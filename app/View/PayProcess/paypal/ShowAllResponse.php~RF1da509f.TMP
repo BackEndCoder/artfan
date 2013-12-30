@@ -1,0 +1,251 @@
+<?php 
+	$sel_uid = "SELECT user_id FROM wp_usermeta WHERE meta_value='".$token."'";
+	$res_uid = mysql_query($sel_uid);
+	$row_uid = mysql_fetch_array($res_uid);			
+	$user_info = get_userdata($row_uid['user_id']);		
+	$sel = "SELECT * FROM wp_usermeta WHERE user_id='".$row_uid['user_id']."'";	
+	$res = mysql_query($sel);
+	while($row = mysql_fetch_array($res)) {
+		$ky = $row['meta_key'];
+		$$ky = $row['meta_value'];
+	}	
+?>
+
+
+  <table class="api" width=400>                                                
+		<tr>
+        	<td>Please confirm your payment. Your detail transactions are as follow: </td>
+        </tr>                
+        <?php
+			if(isset($first_name) && !empty($first_name)) {
+		?>
+		<tr>
+        	<td>First Name</td>
+            <td>
+				<?php
+				echo $first_name;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>
+        
+        <?php
+			if(isset($last_name) && !empty($last_name)) {
+		?>
+		<tr>
+        	<td>Last Name</td>
+            <td>
+				<?php
+				echo $last_name;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($phone) && !empty($phone)) {
+		?>
+		<tr>
+        	<td>Phone</td>
+            <td>
+				<?php
+				echo $phone;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>                
+        <?php
+			if(isset($address1) && !empty($address1)) {
+		?>
+		<tr>
+        	<td>Address1</td>
+            <td>
+				<?php
+				echo $address1;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>                        
+        <?php
+			if(isset($address2) && !empty($address2)) {
+		?>
+		<tr>
+        	<td>Address2</td>
+            <td>
+				<?php
+				echo $address2;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>       
+        
+        <?php
+			if(isset($post_code) && !empty($post_code)) {
+		?>
+		<tr>
+        	<td>Postcode</td>
+            <td>
+				<?php
+				echo $post_code;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>        
+        <?php
+			if(isset($town_city) && !empty($town_city)) {
+		?>
+		<tr>
+        	<td>Town/City</td>
+            <td>
+				<?php
+				echo $town_city;	
+			    ?>   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>
+  </table>
+  
+  
+  
+  <table>
+  		<tr>
+        	<td colspan="2"> <h2> Enrolled Services </h2> </td>
+        </tr>
+
+        <?php
+			if(isset($EPC_legal_requirement) && $EPC_legal_requirement==1) {
+		?>
+		<tr>
+        	<td>EPC Legal Requirement</td>
+            <td>
+				Yes  (&pound; 65)				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>     
+        
+        <?php
+			if(isset($gas_safety_certificate) && $gas_safety_certificate==1) {
+		?>
+		<tr>
+        	<td>Gas Safety Certificate</td>
+            <td>
+				Yes (&pound; 75)				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>                 
+
+
+        <?php
+			if(isset($service_TLB) && !empty($service_TLB)) {
+		?>
+		<tr>
+        	<td>To Let Board</td>
+            <td>
+				Yes  (&pound; <?php echo $service_TLB; ?>) 				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?> 
+        
+        <?php
+			if(isset($service_PP) && !empty($service_PP)) {
+		?>
+		<tr>
+        	<td>Professional Photographs</td>
+            <td>
+				Yes  (&pound; <?php echo $service_PP; ?>) 				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($service_PF) && !empty($service_PF)) {
+		?>
+		<tr>
+        	<td>Professional Floorplan </td>
+            <td>
+				Yes   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($service_GSC) && !empty($service_GSC)) {
+		?>
+		<tr>
+        	<td>Gas Safety Certificate </td>
+            <td>
+				Yes   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($service_EPC) && !empty($service_EPC)) {
+		?>
+		<tr>
+        	<td>EPC </td>
+            <td>
+				Yes   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($service_ESC) && !empty($service_ESC)) {
+		?>
+		<tr>
+        	<td>Electrical Safety Certificate </td>
+            <td>
+				Yes   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>  
+        
+        <?php
+			if(isset($service_RGI) && !empty($service_RGI)) {
+		?>
+		<tr>
+        	<td>Rental Guarantee Insurance (for a 6 month policy)</td>
+            <td>
+				Yes   				
+            </td>            
+        </tr>     
+        <?php
+			}
+		?>                                            
+
+  </table>
+  
+  
+  
+</html>

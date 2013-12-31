@@ -136,7 +136,6 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
             <footer>
                 <section class="footer-box">
                     <ul>
-                        <li><a href="#">Customer Service</a></li>
                         <li><?php echo $this->Html->link('Contact', $this->base . '/contact')?></li>
                         <li><a href="#">Shipping and Delivery</a></li>
                     </ul>
@@ -144,9 +143,7 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                 <section class="footer-box">
                     <ul>
                         <li><a href="<?php echo $this->Html->url('/Artists/lists/')?>"> Meet the artist</a></li>
-                        <li><a href="#">Styles</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="http://idreamsuk.com/artfan/Pages/show/2">Gift Voucher</a></li>
+                        <li><a href="<?php echo $this->Html->url('/Giftcards')?>"> Gift Vouchers</a></li>
                         <li><a href="<?php echo $this->Html->url('/Users/register/')?>">Sign-up</a></li>
                         <?php if ($this->Session->check('username')) { ?>
                             <li><a href="<?php echo $this->Html->url('/Users/logout/')?>">Logout</a></li>

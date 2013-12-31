@@ -29,7 +29,7 @@ App::uses('ColorsController', 'Controller');
 App::uses('StylesController', 'Controller');
 App::uses('SlidersController', 'Controller');
 App::uses('UsersController', 'Controller');
-App::uses('GiftCardsController', 'Controller');
+App::uses('GiftcardsController', 'Controller');
 
 /**
  * Static content controller

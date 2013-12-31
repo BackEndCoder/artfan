@@ -8,9 +8,9 @@ $this->Html->addCrumb('Giftcards', $this->here);
         <div>
 
             <div class="gift-desc"><p>
-                <h4>Art Gift Vouchers</h4>
+                <h4 class="gift-title">Art gift vouchers</h4>
                 We're delighted to announce that you can now buy art gift tokens, to be redeemed against any original
-                art and limited edition prints on <?php $this->Html->link('ArtFan.co.uk', $this->web_root) ?>.<br />
+                art and limited edition prints on <?php $this->Html->link('ArtFan.co.uk', $this->Html->url('/')) ?>.<br />
                 <ul>
                     <li>Now you can give original art to friends, family and colleagues without worrying if they will like it!</li>
                     <li>Choice of over 0000 artworks from over  0000 artists</li>
@@ -27,26 +27,35 @@ $this->Html->addCrumb('Giftcards', $this->here);
                 </p></div>
 
             <div class="gift-form">
+                <h4 class="gift-title">Choose your voucher</h4>
                 <form method="post" action="/Giftcards/index">
-                    <label for="giftcard">Voucher amount</label>
-                <select name="giftcard" id="giftcard">
-                <?php
-                    foreach ($giftcard as $i){ ?>
-                    print_r($i);
-                      <option value="<?php echo $i['Product']['id']; ?>">£<?php echo number_format($i['Product']['price']); ?></option>
-               <?php } ?>
-               </select>
-               <br />
-               <label for="note">Add a personal note</label>
-               <input type="text" value="" name="note" id="note" />
-               <label for="send">Add to basket</label>
-               <input type="Submit" value="Add >>" id="send" name="send" />
+                    <table>
+                        <tr>
+                            <td><label for="giftcard">Voucher amount:</label></td>
+                            <td><select name="giftcard" id="giftcard">
+                            <?php
+                                foreach ($giftcard as $i){ ?>
+                                print_r($i);
+                                  <option value="<?php echo $i['Product']['id']; ?>">£<?php echo number_format($i['Product']['price']); ?></option>
+                           <?php } ?>
+                           </select></td>
+                       </tr>
+                       <tr>
+                           <td><label for="note">Add a personal note:</label></td>
+                           <!--<td><input type="textarea" value="" name="note" id="note" /></td>-->
+                           <td><textarea rows="4" cols="50"></textarea></td>
+                       </tr>
+                       <tr>
+                           <td><label for="send">Add to basket:</label></td>
+                           <td><input type="Submit" value="Add >>" id="send" name="send" /></td>
+                       </tr>
+                   </table>
                <form>
            </div>
 
             <div class="gift-desc">
                 <p>
-                    <h4>Important to know:</h4>
+                    <h4 class="gift-title">Important to know:</h4>
                 <ul>
                     <li>Vouchers are valid for an entire year</li>
                     <li>Vouchers cannot be exchanged for cash</li>

@@ -457,10 +457,28 @@ div.input input, div.input textarea {
 .gift-desc {
     margin-top: 20px;
     margin-bottom: 10px;
+    color: #919191;
+    font: normal 14px/18px 'HelveticaNeueRegular', Helvetica, Arial, sans-serif;
+
+}
+.gift-desc ul {
+    list-style: disc;
+    margin-left: 35px;
 }
 
 .gift-form {
+    color: #919191;
+    font: normal 14px/18px 'HelveticaNeueRegular', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
 
+.gift-form table tr td{
+    border-width: 0px;
+    border: 0;
+}
+
+.gift-title {
+    color: #E3007E;
 }
 
 /* Search form */

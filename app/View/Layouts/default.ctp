@@ -164,10 +164,10 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                 <section class="footer-box">
                     <h2 class="footer_h2">Follow us</h2>
                     <ul class="footer-social">
-                        <li><a href="http://www.facebook.com/"> <img src="<?php echo $this->base; ?>/img/faceboook.png" width="37" height="37" alt="facebook"  target="_blank"/></a></li>
-                        <li><a href="https://twitter.com/" target="_blank"> <img src="<?php echo $this->base; ?>/img/twitter.png" width="38" height="37" alt="twitter" /></a></li>
-                        <li><a href="http://www.linkedin.com/"> <img src="<?php echo $this->base; ?>/img/in.png" width="37" height="37" alt="in"  target="_blank"/></a></li>
-                        <li><a href="https://plus.google.com/"> <img src="<?php echo $this->base; ?>/img/googleplus.png" width="37" height="37" alt="google plus"  target="_blank"/></a></li>
+                        <li><a href="https://www.facebook.com/pages/Artfan/470835846296383" target="_blank"> <img src="<?php echo $this->base; ?>/img/faceboook.png" width="37" height="37" alt="facebook"  target="_blank"/></a></li>
+                        <li><a href="https://twitter.com/Artfanuk" target="_blank"> <img src="<?php echo $this->base; ?>/img/twitter.png" width="38" height="37" alt="twitter" /></a></li>
+                        <li><a href="http://www.linkedin.com/profile/view?id=307967737&trk=nav_responsive_tab_profile_pic"  target="_blank"> <img src="<?php echo $this->base; ?>/img/in.png" width="37" height="37" alt="in"  target="_blank"/></a></li>
+                        <li><a href="https://plus.google.com/107518969866256198203/posts" target="_blank"> <img src="<?php echo $this->base; ?>/img/googleplus.png" width="37" height="37" alt="google plus"  target="_blank"/></a></li>
                     </ul>
                 </section>
 

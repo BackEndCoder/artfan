@@ -196,7 +196,7 @@ class PagesController extends AppController {
 	}
 
     function getProducts() {
-        $gc = new GiftCardsController();
+        $gc = new GiftcardsController();
         $productsCtrl = new ProductsController();
         $productsCtrl->constructClasses();
         $products = $productsCtrl->Product->find('all',

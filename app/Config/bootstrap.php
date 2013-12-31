@@ -91,7 +91,7 @@ Cache::config('default', array('engine' => 'File'));
 
 //CakePlugin::load('DebugKit');
 //CakePlugin::loadAll();
-CakePlugin::load('Contactform', array('routes' => true));
+CakePlugin::load('ContactForm', array('routes' => true));
 Configure::write('Dispatcher.filters', array(
 	'AssetDispatcher',
 	'CacheDispatcher'

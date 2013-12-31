@@ -481,6 +481,25 @@ div.input input, div.input textarea {
     color: #E3007E;
 }
 
+/* Shipping page */
+.shipping {
+    width: 100%;
+    margin-left: 20px;
+}
+.shipping h3 {
+    color: #E3007E;
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.shipping p{
+    color: #919191;
+    font: normal 14px/18px 'HelveticaNeueRegular', Helvetica, Arial, sans-serif;
+}
+
+
+
 /* Search form */
 #search-container {
     width: 760px;

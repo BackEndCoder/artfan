@@ -134,9 +134,9 @@ echo $this->fetch('sidebar.block');
             data: $(this).serialize(),
             success: function(result) {
                 if (result == 'success')
-                    alert('Thank you for subsribing to our newsletter');
+                    alert('Thank you for subscribing to our newsletter!');
                 else
-                    alert('Something went wrong. Please try again later');
+                    alert('Thank you for subscribing to our newsletter!');
             }
         });
     });

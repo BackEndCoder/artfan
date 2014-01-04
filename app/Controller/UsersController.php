@@ -148,7 +148,7 @@ class UsersController extends AppController {
                         $from = "admin@artfan.com";
                         $subject = "Complete Registration";
                         $message = "User registered.<br/>";
-                        $message .= '<a href="http://idreamsuk.com/artfan/Users/completeregistration/' . $rand . '">http://idreamsuk.com/artfan/Users/CompleteRegistration/' . $rand . '</a>';
+                        $message .= '<a href="http://www.artfan.co.uk/Users/completeregistration/' . $rand . '">http://www.artfan.co.uk/Users/CompleteRegistration/' . $rand . '</a>';
                         $headers = 'MIME-Version: 1.0' . "\r\n";
                         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                         $headers .= 'To: ' . $to . "\r\n";
@@ -157,12 +157,7 @@ class UsersController extends AppController {
                         $user_role_id = $this->request->data['User']['role_id'];
                         if($user_role_id == 3) {
                             $user_role_label = 'Buyer';
-                        }
-                        else if($user_role_id == 2) {
-                            $user_role_label = 'Seller';
-                        }
-
-                        $message = '
+                            $message = '
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: arial; font-size:12px;">
             <tr>
@@ -185,17 +180,16 @@ class UsersController extends AppController {
                                         <td>
                                             <table style="font-size: 12px;">
                                             <tr>
-
-                                                    <td>Welcome To Artfan Community. It\'s great to have you join us</td>
+                                                <td>Welcome To Artfan Community. It\'s great to have you join us</td>
                                             </tr>
                                             <tr>
-                                                <td>Please Confirm Your Email address by clicking the link above anfd then you start selling Your items on Artfan, and start earning your share</td>
+                                                <td>Please Confirm Your Email address by clicking the link below</td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div style="margin: 10px;">
 
-                                                    <a href="http://idreamsuk.com/artfan/Users/completeregistration/' . $rand . '" style="padding:5px; background-color: #a3a289; text-decoration: none; color: #FFF; ">Confirm Ur Email Address</a>
+                                                    <a href="http://idreamsuk.com/artfan/Users/completeregistration/' . $rand . '" style="padding:5px; background-color: #a3a289; text-decoration: none; color: #FFF; ">Confirm Email Address</a>
 
                                                     </div>
                                                 </td>
@@ -210,10 +204,6 @@ class UsersController extends AppController {
                                                         <tr>
                                                             <td>Email</td>
                                                             <td>'.$this->request->data['User']['email'].'</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Role</td>
-                                                            <td>'.$user_role_label.'</td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -261,6 +251,108 @@ class UsersController extends AppController {
             </tr>
         </table>
                         ';
+                        }
+                        else if($user_role_id == 2) {
+                            $user_role_label = 'Seller';
+                            $message = '
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: arial; font-size:12px;">
+            <tr>
+                <td style="padding: 10px 0 30px 0;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;  font-size:12px;">
+                        <tr>
+                            <td align="center" bgcolor="#a3a289" style="color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;  font-size:12px;">
+                                <img src="'.Router::url('/', true).'app/webroot/files/email_img/h1.gif" alt="Creating Email Magic" width="600" height="92" style="display: block;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                            Thank you for Registering with us.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table style="font-size: 12px;">
+                                            <tr>
+                                                <td>Welcome To Artfan Community. It\'s great to have you join us</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Please Confirm Your Email address by clicking the link below, We will then review your art
+												And set your account to live within 24 hours
+												</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style="margin: 10px;">
+
+                                                    <a href="http://idreamsuk.com/artfan/Users/completeregistration/' . $rand . '" style="padding:5px; background-color: #a3a289; text-decoration: none; color: #FFF; ">Confirm Email Address</a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table style="font-size: 12px;">
+                                                        <tr>
+                                                            <td>Username</td>
+                                                            <td>'.$this->request->data['User']['username'].'</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email</td>
+                                                            <td>'.$this->request->data['User']['email'].'</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </table>
+                                            <br/>
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#a3a289" style="padding: 30px 30px 30px 30px;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
+                                            &reg; Artfan 2013<br/>
+                                            t: 01234 567891
+                                        </td>
+                                        <td align="right" width="25%">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                                        <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                                            <img src="'.Router::url('/', true).'app/webroot/files/email_img/tw.gif" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                                        </a>
+                                                    </td>
+                                                    <td style="font-size: 0; line-height: 0;" width="20">&nbsp;</td>
+                                                    <td style="font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;">
+                                                        <a href="http://www.twitter.com/" style="color: #ffffff;">
+                                                            <img src="'.Router::url('/', true).'app/webroot/files/email_img/fb.gif" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+                        ';
+                        }
+
+
 
 
                         mail($to, $subject, $message, $headers);

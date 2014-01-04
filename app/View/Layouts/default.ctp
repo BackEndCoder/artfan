@@ -100,7 +100,7 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                         <?php if (!isset($current_user)): ?>
                         <li><a href="<?php echo $this->Html->url('/Users/register'); ?>"> <img src="<?php echo $this->base; ?>/img/signup.png"  alt="signup " />Sign up</a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo $this->Html->url('/WishLists'); ?>"> <img src="<?php echo $this->base; ?>/img/wishlist.png"  alt="wishlist" />Wishlist</a></li>
+                        <li><a href="<?php echo $this->Html->url('/Wishlists'); ?>"> <img src="<?php echo $this->base; ?>/img/wishlist.png"  alt="wishlist" />Wishlist</a></li>
                         <li>
                             <?php if (isset($current_user)): ?>
                                 <?php echo $this->Html->link('Logout', array('plugin' => null, 'controller' => 'Users', 'action' => 'logout')); ?>
@@ -152,7 +152,7 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                             <li><a href="<?php echo $this->Html->url('/Users/login/')?>">Login</a></li>
                         <?php } ?>
 
-                        <li><a href="<?php echo $this->Html->url('/WishLists')?>">Wishlist</a></li>
+                        <li><a href="<?php echo $this->Html->url('/Wishlists')?>">Wishlist</a></li>
                     </ul>
                 </section>
                 <section class="footer-box">

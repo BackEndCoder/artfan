@@ -79,7 +79,7 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                     </ul>
                     <div class="clr"></div>
                     <div class="phone">
-                        <span>t:</span> 01234 567891
+                        <span>t:</span> 07879-106936
                     </div>
                 </div>
             </header>
@@ -158,7 +158,6 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                 <section class="footer-box">
                     <ul>
                         <li><a href="<?php echo $this->Html->url('/Users/register/')?>"><h2>SIGN-UP now</h2> and start selling your work!</a></li>
-
                     </ul>
                 </section>
                 <section class="footer-box">

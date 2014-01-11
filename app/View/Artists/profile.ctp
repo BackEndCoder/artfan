@@ -13,7 +13,6 @@ $this->Html->addCrumb('Profile', $this->here);
 <div id="content_product">
 
     <h2 style="padding-bottom: 3px"><?php echo $user['User']['first_name'] . ' ' . $user['User']['last_name']; ?></h2>
-    <h2 style="padding-bottom: 5px"><?php echo $user['User']['age']; ?> years of age</h2>
     <div class="add"><!--<span class="address"></span>--><span class="add_para"><?php echo $user['User']['address']; ?></span></div>
     <div class="para" style="margin-left: 0;"><span class="bio">Inspired by:&nbsp;</span><?php echo $user['User']['inspired']; ?></div>
     <div class="para" style="margin-left: 0;"><span class="bio">Bio:&nbsp;</span><?php echo $user['User']['about']; ?></div>

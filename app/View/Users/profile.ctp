@@ -10,9 +10,6 @@
         <?php echo $this->Form->input('last_name'); ?>
     </div>
     <div>
-        <?php echo $this->Form->input('age'); ?>
-    </div>
-    <div>
         <?php echo $this->Form->input('email'); ?>
     </div>
     <div>

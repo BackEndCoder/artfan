@@ -13,7 +13,10 @@
         <?php echo $this->Form->input('email'); ?>
     </div>
     <div>
-        <?php echo $this->Form->input('address'); ?>
+        <?php echo $this->Form->input('address', array('type'=>'textarea')); ?>
+    </div>
+    <div>
+        <?php echo $this->Form->input('contact_number'); ?>
     </div>
     <div>
         <?php echo $this->Form->input('inspired', array('type'=>'textarea')); ?>

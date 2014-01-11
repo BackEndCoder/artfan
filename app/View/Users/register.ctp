@@ -14,7 +14,7 @@
                 echo $this->Form->input('password_confirmation', array('type' => 'password'));
                 echo $this->Form->input('address', array('type' => 'textarea'));
                 echo $this->Form->input('contact_number');
-                echo $this->Form->input('Account Type', array('type' => 'radio', 'options' => array(2 => 'Artist & Customer', 3 => 'Customer')));
+                //echo $this->Form->input('Account Type', array('type' => 'radio', 'options' => array(2 => 'Artist & Customer', 3 => 'Customer')));
                 //echo $this->Form->hidden( 'role_id', array( 'value' => '2' ) );
                 ?>
         </fieldset>

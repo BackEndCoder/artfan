@@ -32,6 +32,7 @@ class UsersController extends AppController {
         $user = $this->Auth->user();
         $this->set('current_user', $user);
         $this->Auth->allow('register');
+        $this->Auth->allow('register_artist');
         $this->Auth->allow('login');
         $this->Auth->allow('logout');
         $this->Auth->allow('profile');
@@ -155,7 +156,7 @@ class UsersController extends AppController {
                         $headers .= "From:" . $from;
 
                         $user_role_id = $this->request->data['User']['role_id'];
-                        if($user_role_id == 3) {
+
                             $user_role_label = 'Buyer';
                             $message = '
 
@@ -251,8 +252,57 @@ class UsersController extends AppController {
             </tr>
         </table>
                         ';
-                        }
-                        else if($user_role_id == 2) {
+
+                        mail($to, $subject, $message, $headers);
+
+                        //$this->Session->setFlash('The user has been saved');
+
+                        $this->Session->setFlash('<span class="thank">Thank you... </span><br/> <span class="email_received">You will receive an email shortly.</span>');
+
+                        $this->redirect(array('action' => 'index', 'controller' => 'Registerok'));
+
+                    } else {
+                        $this->Session->setFlash('The user could not be saved. Please, try again.');
+                    }
+                }
+            }
+        }
+    }
+
+    public function register_artist() {
+        if (isset($user['role_id'])){
+            $this->redirect("/");
+        } else{
+            if ($this->request->is('post')) {
+                $user_exists = $this->User->find('first', array('conditions' =>
+                    array(
+                        'OR' => array(
+                            'username' => $this->request->data['User']['username'],
+                            'email' => $this->request->data['User']['email']
+                        )
+                    )));
+
+                if (!empty($user_exists)) {
+                    $this->Session->setFlash('Username/Email Already Exists');
+                } else {
+                    $this->request->data['User']['password'] = AuthComponent::password($this->request->data['User']['password']);
+
+                    $rand = $this->generateRandomString(40);
+                    $this->request->data['User']['rand_str'] = $rand;
+                    if ($this->User->save($this->request->data)) {
+                        $to = $this->request->data['User']['email'];
+                        //$from = "pgmr.anil@gmail.com";
+                        $from = "admin@artfan.com";
+                        $subject = "Complete Registration";
+                        $message = "User registered.<br/>";
+                        $message .= '<a href="http://www.artfan.co.uk/Users/completeregistration/' . $rand . '">http://www.artfan.co.uk/Users/CompleteRegistration/' . $rand . '</a>';
+                        $headers = 'MIME-Version: 1.0' . "\r\n";
+                        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                        $headers .= 'To: ' . $to . "\r\n";
+                        $headers .= "From:" . $from;
+
+                        $user_role_id = $this->request->data['User']['role_id'];
+
                             $user_role_label = 'Seller';
                             $message = '
 
@@ -350,10 +400,6 @@ class UsersController extends AppController {
             </tr>
         </table>
                         ';
-                        }
-
-
-
 
                         mail($to, $subject, $message, $headers);
 

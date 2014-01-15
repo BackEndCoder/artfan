@@ -22,8 +22,8 @@ $ds = DIRECTORY_SEPARATOR;
 $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 
 if (function_exists('ini_set')) {
-	$root = dirname(dirname(dirname(__FILE__)));
-
+	//$root = dirname(dirname(dirname(__FILE__)));
+	$root = dirname(dirname(__FILE__)) . $ds . 'Core';
 	// the following line differs from its sibling
 	// /lib/Cake/Console/Templates/skel/Console/cake.php
 	ini_set('include_path', $root . $ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));

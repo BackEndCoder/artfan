@@ -3,7 +3,7 @@
 ?>
 <?php
 
-	$res_view = $this->requestAction('/Header/getTotalCartPrice/');
+	//$res_view = $this->requestAction('/Header/getTotalCartPrice/');
 	echo $res_view;
 ?>
 <?php

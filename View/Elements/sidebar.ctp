@@ -1,19 +1,6 @@
 <?php
 $this->start('sidebar.block');
 ?>
-
-
-<?php
-$categories = $this->requestAction('/Sidebar/getCategories/');
-$styles = $this->requestAction('/Sidebar/getStyles/');
-$colors = $this->requestAction('/Sidebar/getColors/');
-$testimonials = $this->requestAction('/Sidebar/getTestimonials/');
-$perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
-
-/* echo '<pre>';
-  print_r($categories);
-  echo '</pre>'; */
-?>
 <aside>
     <div class="aside-box">
         <div class="aside-box-title">
@@ -27,6 +14,9 @@ $perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
         ?>
         <div class="aside-contain">
             <ul class="accordion"  id="accordion">
+                <?php
+                    $categories = $this->requestAction('/categories/getCategories/');
+                ?>
                 <li><span class="drop"><img src="<?php echo $this->base; ?>/img/drop.png" width="7" height="16" alt="drop" /></span><a href="#">Category </a>
                     <ul>
                         <?php foreach ($categories as $cat_id => $category): ?>
@@ -35,6 +25,9 @@ $perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
                             <?php }endforeach; ?>
                     </ul>
                 </li>
+                <?php
+                    $colors = $this->requestAction('/colors/getColors/');
+                ?>
                 <li><span class="drop"><img src="<?php echo $this->base; ?>/img/drop.png" width="7" height="16" alt="drop" /></span><a href="#">Colors</a>
                     <ul>
                         <?php foreach ($colors as $color_id => $color): ?>
@@ -43,6 +36,9 @@ $perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
                             <?php }endforeach; ?>
                     </ul>
                 </li>
+                <?php
+                    $styles = $this->requestAction('/styles/getStyles/');
+                ?>
                 <li><span class="drop"><img src="<?php echo $this->base; ?>/img/drop.png" width="7" height="16" alt="drop" /></span><a href="#">Styles</a>
                     <ul>
                         <?php foreach ($styles as $style_id => $style): ?>
@@ -84,6 +80,9 @@ $perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
             <div class="clr"></div>
         </div>
     </div>
+    <?php
+        $perfectgiftPage = $this->requestAction('/pages/getPerfectGift/');
+    ?>
     <div class="aside-box">
         <div class="aside-box-title">
             <h2>The Perfect Gift</h2>
@@ -94,24 +93,23 @@ $perfectgiftPage = $this->requestAction('/Sidebar/getPerfectGift/');
             <div class="clr"></div>
         </div>
     </div>
+    <!-- Testimonials -->
+    <?php
+        $testimonials = $this->requestAction('/testimonials/getTestimonials/');
+    ?>
     <div class="aside-box">
         <div class="aside-box-title">
             <h2>Testimonials</h2>
         </div>
         <div id="testimonials"class="aside-contain">
-
-
             <div class="home_testmonials">
                 <ul>
                     <?php foreach ($testimonials as $testimonial): ?>
-
                         <li><p>"<?php echo $testimonial['Testimonial']['testimonial_content']; ?>"</p>
                             <h6 class="group"><strong><?php echo $testimonial['Testimonial']['testimonial_name']; ?></strong></h6></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
-
-
             <div class="clr"></div>
         </div>
     </div>

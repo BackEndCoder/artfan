@@ -571,5 +571,11 @@ class UsersController extends AppController {
                 array_map($class_func, glob($path . '/*')) == @rmdir($path);
     }
 
+    function getArtists() {
+        return $this->User->getArtists();
+    }
+
+    function getNewArtists() {
+        return $this->User->getNewArtists();
+    }
 }
-?>

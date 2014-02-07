@@ -4,50 +4,25 @@ App::uses('AppController', 'Controller');
 App::uses('CategoriesController', 'Controller');
 App::uses('StylesController', 'Controller');
 App::uses('ColorsController', 'Controller');
-App::uses('GiftcardsController', 'Controller');
-
 
 class ProductsController extends AppController {
 
     public $name = 'Products';
-    public $scaffold = '';
-    var $helpers = array('Html', 'Form', 'Text');
-    public $components = array(
-        'Session',
-        'Auth' => array(
-            //'loginAction' => array('controller' => 'Users', 'action' => 'login'), 
-            'loginRedirect' => array('controller' => 'Pages', 'action' => 'display'),
-            'logoutRedirect' => array('controller' => 'Pages', 'action' => 'index'),
-            'authError' => 'Did you really think you are allowed to see that?',
-            'authorize' => array('Controller')
-        )
-    );
-
-    public function isAuthorized($user) {
-        if ($user['role_id'] == 1 || $user['role_id'] == 2) {
-            return true;
-        }
-        return false;
-    }
-
-    public function beforeFilter() {
-        parent::beforeFilter();
-        $user = $this->Auth->user();
-        $this->set('current_user', $user);
-        $this->Auth->allow('all');
-        $this->layout = "admin";
-    }
+    public $helpers = array('Html', 'Form', 'Text');
+    // These are the ids that only giftcards should have!
+    public $category_gift_id = 11;
+    public $color_gift_id = 12;
+    public $style_gift_id = 11;
 
     public function all() {
         // For getting ids of giftcard items
-        $gc = new GiftcardsController();
         $this->paginate = array(
             'limit' => 20,
             'order' => array('Product.id' => 'asc'),
             // All other than below IDs that represent giftcards
-            'conditions' => array('Product.category_id NOT' => $gc->category_gift_id,
-            'Product.color_id NOT' => $gc->color_gift_id,
-            'Product.style_id NOT' => $gc->style_gift_id)
+            'conditions' => array('Product.category_id NOT' => $this->category_gift_id,
+            'Product.color_id NOT' => $this->color_gift_id,
+            'Product.style_id NOT' => $this->style_gift_id)
         );
         $products = $this->paginate('Product');
         $this->set('products', $products);
@@ -274,6 +249,30 @@ class ProductsController extends AppController {
                 array_map($class_func, glob($path . '/*')) == @rmdir($path);
     }
 
-}
+    public function giftcard_index(){
+        // If user is logged in and there is a post /put request add to card
+        if ($this->request->is('post') || $this->request->is('put')){
+            if ($this->Auth->loggedIn()){
+                // redirect to page to add to cart
+                $id = $this->request->data['giftcard'];
+                $this->redirect(array('controller' => 'ProductDetails',
+                                      'action' => 'addToCart/' . $id));
+            // redirect to register/login if not logged in
+            } else {
+                $this->redirect(array('controller' => 'Users', 'action' => 'login'));
+            }
+        }
 
-?>
+        // List only giftcarded items (color, cat and style all must be giftcard)
+        $productsCtrl = new ProductsController();
+        $productsCtrl->constructClasses();
+        $this->set('giftcard', $productsCtrl->Product->find('all',
+            array('conditions' => array('Product.category_id' => $this->category_gift_id,
+                'Product.color_id' => $this->color_gift_id,
+                'Product.style_id' => $this->style_gift_id))));
+    }
+
+    function getProducts() {
+        return $this->Product->getProducts();
+    }
+}

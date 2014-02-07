@@ -34,6 +34,9 @@ class Product extends AppModel {
 											'foreignKey' => 'author'
 										)
 									);
+    public $category_gift_id = 11;
+    public $color_gift_id = 12;
+    public $style_gift_id = 11;
 					
 					
  		var $validate = array(
@@ -65,7 +68,12 @@ class Product extends AppModel {
 													
 				 			  );					
 				
-
+    function getProducts() {
+        return $this->find('all',
+            array('conditions' => array('Product.category_id NOT' => $this->category_gift_id,
+                'Product.color_id NOT' => $this->color_gift_id,
+                'Product.style_id NOT' => $this->style_gift_id),
+                'limit' => 8,
+                'order' => array('Product.id DESC')));
+    }
 }
-
-?>

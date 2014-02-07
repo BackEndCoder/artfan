@@ -58,7 +58,9 @@ App::uses('Debugger', 'Utility');
     });
   </script>  
 
-
+<?php
+    $sliders = $this->requestAction('/sliders/getSliders/');
+?>
 <div class="banner">
     <div class="slider-wrapper theme-default">
         <div id="slider" class="nivoSlider">
@@ -79,6 +81,9 @@ App::uses('Debugger', 'Utility');
         </div>
     </div>
 </div> <!--end banner-->
+<?php
+    $artists = $this->requestAction('/users/getArtists/');
+?>
 <div class="meet-the-artist">
     <h3 style="margin-left: 0">Meet the Artist</h3>
     <ul class="main-col3">
@@ -146,6 +151,9 @@ App::uses('Debugger', 'Utility');
     </ul>    
 </div>
 <h3>&nbsp;</h3>
+<?php
+    $new_artists = $this->requestAction('/users/getNewArtists/');
+?>
 <div class="meet-the-artist">
     <h3 style="margin-left: 0">Latest Artists</h3>
     <ul class="main-col3">
@@ -210,6 +218,9 @@ App::uses('Debugger', 'Utility');
         endforeach; ?>
     </ul>
 </div>
+<?php
+    $products = $this->requestAction('/products/getProducts/');
+?>
 <h3 style="margin-left: 0;">Recently Added</h3>
 <div class="product_top" style="margin-left: 10px">
    <div class="product_main"></div>

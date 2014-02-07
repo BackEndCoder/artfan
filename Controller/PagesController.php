@@ -1,12 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('ProductsController', 'Controller');
-App::uses('CategoriesController', 'Controller');
-App::uses('ColorsController', 'Controller');
-App::uses('StylesController', 'Controller');
-App::uses('SlidersController', 'Controller');
-App::uses('UsersController', 'Controller');
-App::uses('GiftcardsController', 'Controller');
 class PagesController extends AppController {
     public $name = 'Pages';
     public $helpers = array('Html');
@@ -40,18 +33,18 @@ class PagesController extends AppController {
         }
 
         // get the Products
-        $this->getProducts();
+        //$this->getProducts();
 
         //get the banner slider
-        $this->getSliders();
+        //$this->getSliders();
 
         //get artists
-        $this->getArtists();
+        //$this->getArtists();
 
         //get new artists
-        $this->getNewArtists();
+        //$this->getNewArtists();
 		
-		$this->getCarts();
+		//$this->getCarts();
 
         $this->layout = "default";
         $this->set(compact('page', 'subpage', 'title_for_layout'));
@@ -132,39 +125,4 @@ class PagesController extends AppController {
         }
         $this->set('cartproducts', $products);	
 	}
-
-    function getProducts() {
-        $gc = new GiftcardsController();
-        $productsCtrl = new ProductsController();
-        $productsCtrl->constructClasses();
-        $products = $productsCtrl->Product->find('all',
-            array('conditions' => array('Product.category_id NOT' => $gc->category_gift_id,
-                'Product.color_id NOT' => $gc->color_gift_id,
-                'Product.style_id NOT' => $gc->style_gift_id),
-                'limit' => 8,
-                'order' => array('Product.id DESC')));
-
-        $this->set('products', $products);
-    }
-
-    function getSliders() {
-        $slidersCtrl = new SlidersController();
-        $slidersCtrl->constructClasses();
-        $sliders = $slidersCtrl->Slider->find('all');
-        $this->set('sliders', $sliders);
-    }
-
-    function getArtists() {
-        $artistsCtrl = new UsersController();
-        $artistsCtrl->constructClasses();
-        $artists = $artistsCtrl->User->find('all', array('conditions' => array('User.role_id' => 2)));
-        $this->set('artists', $artists);
-    }
-
-    function getNewArtists() {
-        $artistsCtrl = new UsersController();
-        $artistsCtrl->constructClasses();
-        $new_artists = $artistsCtrl->User->find('all', array('conditions' => array('User.role_id' => 2), 'order' => array('User.id DESC')));
-        $this->set('new_artists', $new_artists);
-    }
 }

@@ -62,40 +62,25 @@ class ProductsController extends AppController {
 
     public function add() {
         // Get giftcard controller, need to check to see if it should be populated in add menu
-        $gc = new GiftcardsController();
+        //$gc = new GiftcardsController();
 
         // get current user
         $user = $this->Auth->user();
 
-        $cat = new CategoriesController();
-        $cat->constructClasses();
         if ($user['role_id'] == 1) {
-            $categories = $cat->Category->find('list', array('fields' => array('Category.id', 'Category.catname')));
+            $categories = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname')));
+            $styles = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename')));
+            $colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname')));
         } else {
-            $categories = $cat->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
-                'conditions' => array('id NOT' => $gc->category_gift_id)));
+            $categories = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
+                'conditions' => array('id NOT' => $this->category_gift_id)));
+            $styles = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
+                'conditions' => array('id NOT' => $this->style_gift_id)));
+            $colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
+                'conditions' => array('id NOT' => $this->color_gift_id)));
         }
         $this->set('categories', $categories);
-
-        $styleCtrl = new StylesController();
-        $styleCtrl->constructClasses();
-        if ($user['role_id'] == 1) {
-            $styles = $styleCtrl->Style->find('list', array('fields' => array('Style.id', 'Style.stylename')));
-        } else {
-            $styles = $styleCtrl->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
-                'conditions' => array('id NOT' => $gc->style_gift_id)));
-        }
         $this->set('styles', $styles);
-
-        $colorCtrl = new ColorsController();
-        $colorCtrl->constructClasses();
-        if ($user['role_id'] == 1) {
-            $colors = $colorCtrl->Color->find('list', array('fields' => array('Color.id', 'Color.colorname')));
-        } else {
-            $colors = $colorCtrl->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
-                'conditions' => array('id NOT' => $gc->color_gift_id)));
-
-        }
         $this->set('colors', $colors);
 
         $user = $this->Auth->user();

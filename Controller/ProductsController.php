@@ -264,10 +264,7 @@ class ProductsController extends AppController {
         }
 
         // List only giftcarded items (color, cat and style all must be giftcard)
-        $this->set('giftcard', $this->Product->find('all',
-            array('conditions' => array('Product.category_id' => $this->category_gift_id,
-                'Product.color_id' => $this->color_gift_id,
-                'Product.style_id' => $this->style_gift_id))));
+        $this->set('giftcard', $this->Product->getGiftCards();
     }
 
     function getProducts() {

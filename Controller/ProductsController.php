@@ -11,15 +11,16 @@ class ProductsController extends AppController {
 
 	public $giftStyleId = 11;
 
-	public function all() {
+	public function all($GiftColorId) {
+
 		// For getting ids of giftcard items
 		$this->paginate = array(
 			'limit' => 20,
 			'order' => array('Product.id' => 'asc'),
 			// All other than below IDs that represent giftcards
-			'conditions' => array('Product.category_id NOT' => $this->category_gift_id,
-			'Product.color_id NOT' => $this->color_gift_id,
-			'Product.style_id NOT' => $this->style_gift_id)
+			'conditions' => array('Product.category_id NOT' => $this->giftCategoryId,
+			'Product.color_id NOT' => $this->giftColorId,
+			'Product.style_id NOT' => $this->giftStyleId)
 		);
 		$products = $this->paginate('Product');
 		$this->set('products', $products);
@@ -32,9 +33,9 @@ class ProductsController extends AppController {
 			$this->paginate = array(
 				'limit' => 10,
 				'order' => array('Product.id' => 'asc'),
-				'conditions' => array('Product.category_id NOT' => $this->category_gift_id,
-					'Product.color_id NOT' => $this->color_gift_id,
-					'Product.style_id NOT' => $this->style_gift_id
+				'conditions' => array('Product.category_id NOT' => $this->giftCategoryId,
+					'Product.color_id NOT' => $this->giftColorId,
+					'Product.style_id NOT' => $this->giftStyleId
 					)
 				);
 			$products = $this->paginate('Product');
@@ -64,11 +65,11 @@ class ProductsController extends AppController {
 			$colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname')));
 		} else {
 			$categories = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
-				'conditions' => array('id NOT' => $this->category_gift_id)));
+				'conditions' => array('id NOT' => $this->giftCategoryId)));
 			$styles = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
-				'conditions' => array('id NOT' => $this->style_gift_id)));
+				'conditions' => array('id NOT' => $this->giftStyleId)));
 			$colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
-				'conditions' => array('id NOT' => $this->color_gift_id)));
+				'conditions' => array('id NOT' => $this->giftColorId)));
 		}
 		$this->set('categories', $categories);
 		$this->set('styles', $styles);

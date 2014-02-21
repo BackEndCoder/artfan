@@ -90,7 +90,7 @@ class ProductsController extends AppController {
 				$this->redirect(array('action' => 'index'));
 				$this->Session->setFlash("The product has been saved");
 			}
-			else{
+			else {
 				$this->Session->setFlash('The product could not be saved. Please, try again.');
 			}
 		}
@@ -317,13 +317,12 @@ class ProductsController extends AppController {
 	}
 
 	public function updateCart() {
-
 		if ($this->Session->read('cart') == null) {
 			$productDict = array();
 		} else {
 			$productDict = $this->Session->read('cart');
 		}
-		foreach($_POST['prodId'] as $key => $prodId) {
+		foreach ($_POST['prodId'] as $key => $prodId) {
 			if ($this->Dictionary->containsKey($productDict, $prodId)) {
 				$this->Dictionary->removeItem($productDict, $prodId);
 				$this->Dictionary->addItem($productDict, $prodId, $_POST['prod_qty'][$key]);
@@ -416,7 +415,6 @@ class ProductsController extends AppController {
 	public function search() {
 		// Logic for the search function to return results
 
-
 		$catName = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
 			'conditions' => array('id NOT' => $this->giftCategoryId)));
 		$this->set('catname', $catName);
@@ -501,7 +499,6 @@ class ProductsController extends AppController {
 			$this->set('search_style', '');
 			$this->set('search_price', '');
 		}
-
 	}
 
 	/* From the search controller above, using the arrays created for inputArray

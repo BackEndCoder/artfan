@@ -81,15 +81,15 @@ $this->start('sidebar.block');
         </div>
     </div>
     <?php
-        $perfectgiftPage = $this->requestAction('/pages/getPerfectGift/');
+        $perfectgiftPage = $this->requestAction('/contents/getContent/4');
     ?>
     <div class="aside-box">
         <div class="aside-box-title">
             <h2>The Perfect Gift</h2>
         </div>
         <div class="aside-contain">
-            <p><?php echo nl2br($perfectgiftPage['Page']['content']); ?></p>
-            <span class="btn"><?php echo $this->Html->link('more', array('plugin' => null, 'controller' => 'Pages', 'action' => 'show', 4)); ?> </span>
+            <p><?php echo nl2br($perfectgiftPage['Content']['content']); ?></p>
+            <span class="btn"><?php echo $this->Html->link('more', array('plugin' => null, 'controller' => 'contents', 'action' => 'show', 4)); ?> </span>
             <div class="clr"></div>
         </div>
     </div>

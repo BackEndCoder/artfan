@@ -26,12 +26,11 @@
  */
         Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
         Router::connect('/giftcards', array('controller' => 'products', 'action' => 'giftcards'));
-        Router::connect('/products/*', array('controller' => 'products', 'action' => 'index'));
+        Router::connect('/pages/getPerfectGift', array('controller' => 'pages', 'action' => 'getPerfectGift'));
+        Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-        Router::connect('/pages/getPerfectGift', array('controller' => 'pages', 'action' => 'getPerfectGift'));
-        Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

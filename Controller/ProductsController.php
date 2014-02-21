@@ -391,6 +391,21 @@ class ProductsController extends AppController {
 		$this->set('cartproducts', $products);
 	}
 
+	function getCarts() {
+        $productArray = $this->Session->read('cart');
+        $products = array();
+        if (count($productArray) > 0) {
+            foreach ($productArray as $cartItemKey => $cartItemValue) {
+                $product = $this->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
+                if ($product != null) {
+                    $product['Product']['Quantity'] = $cartItemValue;
+                    $products[] = $product;
+                }
+            }
+        }
+        $this->set('cartproducts', $products);	
+	}
+
 	public function price($id = '') {
 		// Price range array
 		$priceRange = array(

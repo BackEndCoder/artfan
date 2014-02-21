@@ -232,8 +232,7 @@
             } else {
                 $style = 'margin-left:0px; margin-right:0px; padding-bottom:10px;';
             }
-
-            ?>
+        ?>
             <div class="products_details" <?php echo $style ?>>
                 <?php
                 $id = $product['Product']['id'];

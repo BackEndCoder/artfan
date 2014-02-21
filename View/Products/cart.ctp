@@ -5,7 +5,7 @@ $this->Html->addCrumb('Cart', $this->here);
 $total = 0;
 ?>
 
-<form method="post" action="<?php echo $this->base;?>/ProductDetails/updateCart">
+<form method="post" action="<?php echo $this->base;?>/products/updateCart">
 
 <div class="left_cart">
     <h2 class="cart_icon">Shopping Bag</h2>

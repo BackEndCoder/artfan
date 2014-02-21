@@ -87,11 +87,11 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
             <nav>
                 <ul class="menu">
                     <li><a href="<?php echo $this->Html->url('/'); ?>">Home </a></li>
-                    <li><?php echo $this->Html->link('All Art', array('plugin' => null,'controller' => 'products', 'action' => 'all')); ?></li>
+                    <li><?php echo $this->Html->link('All Art', array('plugin' => null,'controller' => 'products', 'action' => 'index')); ?></li>
                     <li><?php echo $this->Html->link('Search', array('plugin' => null,'controller' => 'products', 'action' => 'search')); ?></li>
                     <li><?php echo $this->Html->link('Artists', array('plugin' => null,'controller' => 'artists', 'action' => 'lists')); ?></li>
                     <li><?php echo $this->Html->link('Be Inspired', array('plugin' => null,'controller' => 'inspired', 'action' => 'index')); ?></li>
-                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'products', 'action' => 'giftcard_index')); ?></li>
+                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'products', 'action' => 'giftcard')); ?></li>
 					<?php /*<li><?php echo $this->Html->link('Wishlist', array('controller' => 'Wishlists', 'action' => 'index')); ?></li> */ ?>
                     <li><?php echo $this->Html->link('Get in Touch', '/contact'); ?></li>
                 </ul>

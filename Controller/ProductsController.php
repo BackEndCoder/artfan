@@ -11,7 +11,7 @@ class ProductsController extends AppController {
 
 	public $giftStyleId = 11;
 
-	public function all($GiftColorId) {
+	public function index() {
 
 		// For getting ids of giftcard items
 		$this->paginate = array(
@@ -27,7 +27,7 @@ class ProductsController extends AppController {
 		$this->layout = "default";
 	}
 
-	public function index() {
+	public function admin_index() {
 		$user = $this->Auth->user();
 		if ($user['role_id'] == 1) {
 			$this->paginate = array(
@@ -44,9 +44,9 @@ class ProductsController extends AppController {
 				'limit' => 10,
 				'conditions' => array(
 					'Product.author' => $user['id'],
-					'Product.category_id NOT' => $this->GiftCategoryId,
-					'Product.color_id NOT' => $this->GiftColorId,
-					'Product.style_id NOT' => $this->StyleGiftId
+					'Product.category_id NOT' => $this->giftCategoryId,
+					'Product.color_id NOT' => $this->giftColorId,
+					'Product.style_id NOT' => $this->giftStyleId
 					),
 				'order' => array('Product.id' => 'asc')
 				);
@@ -56,7 +56,7 @@ class ProductsController extends AppController {
 		$this->set('products', $products);
 	}
 
-	public function add() {
+	public function admin_add() {
 		$user = $this->Auth->user();
 
 		if ($user['role_id'] == 1) {
@@ -101,7 +101,7 @@ class ProductsController extends AppController {
 		return false;
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		$this->Product->id = $id;
 
 		if (!$this->Product->exists()) {
@@ -153,7 +153,7 @@ class ProductsController extends AppController {
 		$this->set('colors', $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'))));
 	}
 
-	public function view($id = null) {
+	public function admin_view($id = null) {
 		$this->Product->id = $id;
 
 		if (!$this->Product->exists()) {
@@ -184,7 +184,7 @@ class ProductsController extends AppController {
 		$this->set('featuredImage', $featuredImage);
 	}
 
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
@@ -211,7 +211,11 @@ class ProductsController extends AppController {
 				array_map($classFunc, glob($path . '/*')) == @rmdir($path);
 	}
 
-	public function giftcard_index() {
+
+///GIFTCARD
+
+
+	public function giftcard() {
 		// If user is logged in and there is a post /put request add to card
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Auth->loggedIn()) {
@@ -232,6 +236,9 @@ class ProductsController extends AppController {
 	public function getProducts() {
 		return $this->Product->getProducts();
 	}
+
+///GIFTCARD
+
 
 	public function getTotalCartPrice($id = null) {
 		$productArray = $this->Session->read('cart');
@@ -272,7 +279,7 @@ class ProductsController extends AppController {
 		$this->layout = "default";
 	}
 
-	public function products_index($id = null) {
+	public function view($id = null) {
 		$product = $this->Product->find('first', array('conditions' => array('Product.id' => $id)));
 
 		$userproducts = $this->Product->find('all', array(
@@ -516,8 +523,6 @@ class ProductsController extends AppController {
 	}
 
 	public function category($id = '') {
-		$categoriesCtrl = new CategoriesController();
-		$categoriesCtrl->constructClasses();
 		$catName = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $id),
 			'fields' => array('Category.catname')));
 		$this->set('catname', $catName['Category']['catname']);
@@ -531,7 +536,7 @@ class ProductsController extends AppController {
 			'fields' => array('Color.colorname')));
 		$this->set('colorname', $colorName['Color']['colorname']);
 
-		$products = $this->Product->find('all', array('conditions' => array('Product.colorId' => $id)));
+		$products = $this->Product->find('all', array('conditions' => array('Product.color_id' => $id)));
 		$this->set('products', $products);
 	}
 
@@ -540,7 +545,7 @@ class ProductsController extends AppController {
 			'fields' => array('Style.stylename')));
 		$this->set('stylename', $styleName['Style']['stylename']);
 
-		$products = $this->Product->find('all', array('conditions' => array('Product.colorId' => $id)));
+		$products = $this->Product->find('all', array('conditions' => array('Product.style_id' => $id)));
 		$this->set('products', $products);
 	}
 }

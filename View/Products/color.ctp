@@ -31,7 +31,7 @@
             ?>
             <div class="products_others">
                 <img src="<?php echo $images; ?>" alt="iphone"  class="" />
-                <h2><?php echo $this->Html->link($eachProduct['Product']['title'], array('action' => 'index', 'controller' => 'ProductDetails', $id)); ?></h2>
+                <h2><?php echo $this->Html->link($eachProduct['Product']['title'], array('action' => 'index', 'controller' => 'products', $id)); ?></h2>
                 <p><?php echo $this->Html->link($eachProduct['User']['first_name'] . ' ' . $eachProduct['User']['last_name'], array('action' => 'profile', 'controller' => 'Artists', $eachProduct['User']['username'])); ?>
                 <p class="product_des"><?php echo $eachProduct['Product']['description']; ?></p>
                 <p class="product_price">$ <?php echo $eachProduct['Product']['price']; ?></p>

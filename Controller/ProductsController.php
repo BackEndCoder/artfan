@@ -221,7 +221,7 @@ class ProductsController extends AppController {
 			if ($this->Auth->loggedIn()) {
 				// redirect to page to add to cart
 				$id = $this->request->data['giftcard'];
-				$this->redirect(array('controller' => 'ProductDetails',
+				$this->redirect(array('controller' => 'products',
 					'action' => 'addToCart/' . $id));
 				// redirect to register/login if not logged in
 			} else {
@@ -320,7 +320,7 @@ class ProductsController extends AppController {
 		}
 
 		$this->Session->write('cart', $productDict);
-		$this->redirect(array("controller" => "ProductDetails",
+		$this->redirect(array("controller" => "products",
 			"action" => "cart"));
 	}
 

@@ -1,19 +1,15 @@
 <?php
-App::uses('AppController', 'Controller');
-App::uses('CategoriesController', 'Controller');
-App::uses('StylesController', 'Controller');
-App::uses('ColorsController', 'Controller');
 class ProductsController extends AppController {
 
 	public $name = 'Products';
 
 	public $helpers = array('Html', 'Form', 'Text');
 
-	public $GiftCategoryId = 11;
+	public $giftCategoryId = 11;
 
-	public $GiftColorId = 12;
+	public $giftColorId = 12;
 
-	public $GiftStyleId = 11;
+	public $giftStyleId = 11;
 
 	public function all() {
 		// For getting ids of giftcard items
@@ -257,5 +253,296 @@ class ProductsController extends AppController {
 			$cartCnt++;
 		endforeach;
 		return $total;
+	}
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$user = $this->Auth->user();
+		$this->set('current_user', $user);
+		$this->Auth->allow('index');
+		$this->Auth->allow('addToCart');
+		$this->Auth->allow('updateCart');
+		$this->Auth->allow('cart');
+		$this->Auth->allow('category');
+		$this->Auth->allow('color');
+		$this->Auth->allow('style');
+		$this->Auth->allow('search');
+		$this->Auth->allow('price');
+		$this->layout = "default";
+	}
+
+	public function products_index($id = null) {
+		$product = $this->Product->find('first', array('conditions' => array('Product.id' => $id)));
+
+		$userproducts = $this->Product->find('all', array(
+			'conditions' => array('NOT' => array('Product.id' => array($id)),
+				'Product.author' => $product['Product']['author']),
+			'limit' => 4));
+
+		$this->set('product', $product);
+		$this->set('userproducts', $userproducts);
+		$productArray = $this->Session->read('cart');
+		$products = array();
+		if (count($productArray) > 0) {
+			foreach ($productArray as $cartItemKey => $cartItemValue) {
+				$product = $this->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
+				if ($product != null) {
+					$product['Product']['Quantity'] = $cartItemValue;
+					$products[] = $product;
+				}
+			}
+		}
+		$this->set('cartproducts', $products);
+	}
+
+	public function addToCart($id = null) {
+		if ($this->Session->read('cart') == null) {
+			$productDict = array();
+		} else {
+			$productDict = $this->Session->read('cart');
+		}
+
+		if ($this->Dictionary->containsKey($productDict, $id)) {
+			$prevQty = $this->Dictionary->getItem($productDict, $id);
+			$this->Dictionary->removeItem($productDict, $id);
+			$this->Dictionary->addItem($productDict, $id, $prevQty + 1);
+		} else {
+			echo 'new';
+			$this->Dictionary->addItem($productDict, $id, 1);
+		}
+
+		$this->Session->write('cart', $productDict);
+		$this->redirect(array("controller" => "ProductDetails",
+			"action" => "cart"));
+	}
+
+	public function updateCart() {
+
+		if ($this->Session->read('cart') == null) {
+			$productDict = array();
+		} else {
+			$productDict = $this->Session->read('cart');
+		}
+		foreach($_POST['prodId'] as $key => $prodId) {
+			if ($this->Dictionary->containsKey($productDict, $prodId)) {
+				$this->Dictionary->removeItem($productDict, $prodId);
+				$this->Dictionary->addItem($productDict, $prodId, $_POST['prod_qty'][$key]);
+			}
+		}
+		$this->Session->write('cart', $productDict);
+
+		$productArray = $this->Session->read('cart');
+
+		$products = array();
+		if (count($productArray) > 0) {
+			foreach ($productArray as $cartItemKey => $cartItemValue) {
+				if ($cartItemValue > 0) {
+					$product = $this->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
+					if ($product != null) {
+						$product['Product']['Quantity'] = $cartItemValue;
+						$products[] = $product;
+					}
+				}
+			}
+		}
+
+		$this->set('products', $products);
+		$this->set('cartproducts', $products);
+	}
+
+	public function cart() {
+		$productArray = $this->Session->read('cart');
+		$products = array();
+		if (count($productArray) > 0) {
+			foreach ($productArray as $cartItemKey => $cartItemValue) {
+				if ($cartItemValue > 0) {
+					$product = $this->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
+					if ($product != null) {
+						$product['Product']['Quantity'] = $cartItemValue;
+						$products[] = $product;
+					}
+				}
+			}
+		}
+		$this->set('products', $products);
+		$this->set('cartproducts', $products);
+	}
+
+	public function price($id = '') {
+		// Price range array
+		$priceRange = array(
+			'1' => 'Less than £250',
+			'2' => '£250 - £500',
+			'3' => '£500 - £1,000',
+			'4' => '£1,000 - £2,000',
+			'5' => '£2,000 - £10,000',
+			'6' => 'More than £10,000'
+		);
+
+		if ($this->check_search_array($id, $priceRange) == 1 || $id == '') {
+			$this->redirect(Router::url('/', true));
+		} else {
+			$conditions = array();
+			switch ($id) {
+				case '1':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(0, 250)));
+					break;
+				case '2':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(250, 500)));
+					break;
+				case '3':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(500, 1000)));
+					break;
+				case '4':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(1000, 2000)));
+					break;
+				case '5':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(2000, 10000)));
+					break;
+				case '6':
+					array_push($conditions, array('product.price BETWEEN ? AND ?' => array(10000, 999999)));
+					break;
+			}
+
+			// Get products
+			$products = $this->Product->find('all', array('conditions' => $conditions));
+			$this->set('products', $products);
+
+			// Set range for breadcrumb
+			$this->set('priceRange', $priceRange[$id]);
+		}
+	}
+
+	public function search() {
+		// Logic for the search function to return results
+
+
+		$catName = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
+			'conditions' => array('id NOT' => $this->giftCategoryId)));
+		$this->set('catname', $catName);
+
+		$colorName = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
+			'conditions' => array('id NOT' => $this->giftColorid)));
+		$this->set('colorname', $colorName);
+
+		$styleName = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
+			'conditions' => array('id NOT' => $this->giftStyleId)));
+		$this->set('stylename', $styleName);
+
+		$priceRange = array(
+		'1' => 'Less than £250',
+		'2' => '£250 - £500',
+		'3' => '£500 - £1,000',
+		'4' => '£1,000 - £2,000',
+		'5' => '£2,000 - £10,000',
+		'6' => 'More than £10,000'
+		);
+		$this->set('pricerange', $priceRange);
+
+		if ($this->request->is('post')) {
+			$error = 0;
+			$error += $this->check_search_array($this->request->data['Product']['Category'], $catName);
+			$error += $this->check_search_array($this->request->data['Product']['Colour'], $colorName);
+			$error += $this->check_search_array($this->request->data['Product']['Style'], $styleName);
+			$error += $this->check_search_array($this->request->data['Product']['Price Range'], $priceRange);
+
+			// If error, shout
+			if ($error > 0) {
+				$this->Session->setFlash("An error occurred with the search!");
+			} else {
+
+				$conditions = array();
+				if ($this->request->data['Product']['Category']) {
+					array_push($conditions, array('category_id' => $this->request->data['Product']['Category']));
+				}
+				if ($this->request->data['Product']['Colour']) {
+					array_push($conditions, array('colorId' => $this->request->data['Product']['Colour']));
+				}
+				if ($this->request->data['Product']['Style']) {
+					array_push($conditions, array('style_id' => $this->request->data['Product']['Style']));
+				}
+				if ($this->request->data['Product']['Price Range']) {
+					switch ($this->request->data['Product']['Price Range']) {
+						case '1':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(0, 250)));
+							break;
+						case '2':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(250, 500)));
+							break;
+						case '3':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(500, 1000)));
+							break;
+						case '4':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(1000, 2000)));
+							break;
+						case '5':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(2000, 10000)));
+							break;
+						case '6':
+							array_push($conditions, array('product.price BETWEEN ? AND ?' => array(10000, 999999)));
+							break;
+					}
+				}
+
+				// query
+				$products = $this->Product->find('all', array('conditions' => $conditions));
+				$this->set('search_results', $products);
+
+				// Set these for selected values later
+				$this->set('search_cat', $this->request->data['Product']['Category']);
+				$this->set('search_color', $this->request->data['Product']['Colour']);
+				$this->set('search_style', $this->request->data['Product']['Style']);
+				$this->set('search_price', $this->request->data['Product']['Price Range']);
+			}
+		} else {
+			// If there was no post search items should be blank for pre selected values
+			$this->set('search_cat', '');
+			$this->set('search_color', '');
+			$this->set('search_style', '');
+			$this->set('search_price', '');
+		}
+
+	}
+
+	/* From the search controller above, using the arrays created for inputArray
+	   check to see if the key exists, also check to see if none is selected
+	   returns 1 to increment error counter
+	*/
+
+	public function check_search_array($value, $inputArray) {
+		if (array_key_exists($value, $inputArray) || $value == '') {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	public function category($id = '') {
+		$categoriesCtrl = new CategoriesController();
+		$categoriesCtrl->constructClasses();
+		$catName = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $id),
+			'fields' => array('Category.catname')));
+		$this->set('catname', $catName['Category']['catname']);
+
+		$products = $this->Product->find('all', array('conditions' => array('Product.category_id' => $id)));
+		$this->set('products', $products);
+	}
+
+	public function color($id = '') {
+		$colorName = $this->Product->Color->find('first', array('conditions' => array('Color.id' => $id),
+			'fields' => array('Color.colorname')));
+		$this->set('colorname', $colorName['Color']['colorname']);
+
+		$products = $this->Product->find('all', array('conditions' => array('Product.colorId' => $id)));
+		$this->set('products', $products);
+	}
+
+	public function style($id = '') {
+		$styleName = $this->Product->Style->find('first', array('conditions' => array('Style.id' => $id),
+			'fields' => array('Style.stylename')));
+		$this->set('stylename', $styleName['Style']['stylename']);
+
+		$products = $this->Product->find('all', array('conditions' => array('Product.colorId' => $id)));
+		$this->set('products', $products);
 	}
 }

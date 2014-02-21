@@ -12,7 +12,7 @@ class ProductsController extends AppController {
 	public $giftStyleId = 11;
 
 	public function index() {
-		foreach ($this->request->params as $k => $v):
+		foreach ($this->request->params['named'] as $k => $v):
         	$$k = $v;
         endforeach;
         foreach ($this->request->query as $k => $v):

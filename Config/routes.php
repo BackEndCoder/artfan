@@ -26,6 +26,7 @@
  */
         Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
         Router::connect('/giftcards', array('controller' => 'products', 'action' => 'giftcards'));
+        Router::connect('/products/*', array('controller' => 'products', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

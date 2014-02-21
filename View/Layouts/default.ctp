@@ -73,9 +73,9 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                     <ul class="header-cart">
                         <?php echo $this->element('welcome'); ?>
                         <?php echo $this->element('admin_link'); ?>
-                        <li><a href="<?php echo $this->base;?>/ProductDetails/cart">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
-                        <!--<li><a href="<?php echo $this->base;?>/ProductDetails/cart"><img style="padding-bottom: 4px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" /></a></li>
-						<li><a href="<?php echo $this->base;?>/ProductDetails/cart">(&pound; <?php  echo $this->element('header'); ?>)</a></li>-->
+                        <li><a href="<?php echo $this->base;?>/products/cart">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
+                        <!--<li><a href="<?php echo $this->base;?>/products/cart"><img style="padding-bottom: 4px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" /></a></li>
+						<li><a href="<?php echo $this->base;?>/products/cart">(&pound; <?php  echo $this->element('header'); ?>)</a></li>-->
                     </ul>
                     <div class="clr"></div>
                     <div class="phone">

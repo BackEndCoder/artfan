@@ -13,15 +13,28 @@ class ProductsController extends AppController {
 
 	public function index() {
 
-		// For getting ids of giftcard items
-		$this->paginate = array(
+		$options = array(
 			'limit' => 20,
 			'order' => array('Product.id' => 'asc'),
 			// All other than below IDs that represent giftcards
-			'conditions' => array('Product.category_id NOT' => $this->giftCategoryId,
+			'conditions' => array(array('Product.category_id NOT' => $this->giftCategoryId,
 			'Product.color_id NOT' => $this->giftColorId,
-			'Product.style_id NOT' => $this->giftStyleId)
-		);
+			'Product.style_id NOT' => $this->giftStyleId
+			)));
+
+if(!empty($this->request->named['category'])){
+		$this->set('catname', $this->Product->Category->getCategoryName($this->request->named['category']));
+		$options['conditions'][0]['Product.category_id'] = $this->request->named['category'];
+}
+if(!empty($this->request->named['color'])){
+		$this->set('colorname', $this->Product->Color->getColorName($this->request->named['color']));
+		$options['conditions'][0]['Product.color_id'] = $this->request->named['color'];
+}
+if(!empty($this->request->named['style'])){
+		$this->set('stylename', $this->Product->Style->getStyleName($this->request->named['style']));
+		$options['conditions'][0]['Product.style_id'] = $this->request->named['style'];
+}
+$this->paginate = $options;
 		$products = $this->paginate('Product');
 		$this->set('products', $products);
 		$this->layout = "default";
@@ -520,32 +533,5 @@ class ProductsController extends AppController {
 		} else {
 			return 1;
 		}
-	}
-
-	public function category($id = '') {
-		$catName = $this->Product->Category->find('first', array('conditions' => array('Category.id' => $id),
-			'fields' => array('Category.catname')));
-		$this->set('catname', $catName['Category']['catname']);
-
-		$products = $this->Product->find('all', array('conditions' => array('Product.category_id' => $id)));
-		$this->set('products', $products);
-	}
-
-	public function color($id = '') {
-		$colorName = $this->Product->Color->find('first', array('conditions' => array('Color.id' => $id),
-			'fields' => array('Color.colorname')));
-		$this->set('colorname', $colorName['Color']['colorname']);
-
-		$products = $this->Product->find('all', array('conditions' => array('Product.color_id' => $id)));
-		$this->set('products', $products);
-	}
-
-	public function style($id = '') {
-		$styleName = $this->Product->Style->find('first', array('conditions' => array('Style.id' => $id),
-			'fields' => array('Style.stylename')));
-		$this->set('stylename', $styleName['Style']['stylename']);
-
-		$products = $this->Product->find('all', array('conditions' => array('Product.style_id' => $id)));
-		$this->set('products', $products);
 	}
 }

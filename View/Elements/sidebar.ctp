@@ -21,7 +21,7 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($categories as $cat_id => $category): ?>
                             <?php if ($category_gift_id != $cat_id) { ?>
-                            <li><?php echo $this->Html->link($category, array('plugin' => null, 'controller' => 'products', 'action' => 'category', $cat_id)); ?>
+                            <li><?php echo $this->Html->link($category, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'category' => $cat_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>
@@ -32,7 +32,7 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($colors as $color_id => $color): ?>
                             <?php if ($color_id != $color_gift_id) { ?>
-                            <li><?php echo $this->Html->link($color, array('plugin' => null, 'controller' => 'products', 'action' => 'color', $color_id)); ?>
+                            <li><?php echo $this->Html->link($color, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'color' => $color_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>
@@ -43,7 +43,7 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($styles as $style_id => $style): ?>
                             <?php if ($style_id != $style_gift_id) { ?>
-                            <li><?php echo $this->Html->link($style, array('plugin' => null, 'controller' => 'products', 'action' => 'style', $style_id)); ?>
+                            <li><?php echo $this->Html->link($style, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'style' => $style_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>

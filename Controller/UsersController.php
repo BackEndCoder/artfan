@@ -518,7 +518,7 @@ class UsersController extends AppController {
 
 	public function completeregistration($randStr) {
 		$this->User->query("UPDATE users SET is_active=1 
-							WHERE randStr='" . $randStr . "'");
+							WHERE rand_str='" . $randStr . "'");
 	}
 
 	public function forgotpassword() {

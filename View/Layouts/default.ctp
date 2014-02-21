@@ -142,22 +142,22 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                 </section>
                 <section class="footer-box">
                     <ul>
-                        <li><a href="<?php echo $this->Html->url('/Artists/lists/')?>"> Meet the artist</a></li>
-                        <li><a href="<?php echo $this->Html->url('/Giftcards')?>"> Gift Vouchers</a></li>
-                        <li><a href="<?php echo $this->Html->url('/Users/register/')?>">Sign-up</a></li>
+                        <li><a href="<?php echo $this->Html->url('/artists/lists/')?>"> Meet the artist</a></li>
+                        <li><a href="<?php echo $this->Html->url('/giftcards')?>"> Gift Vouchers</a></li>
+                        <li><a href="<?php echo $this->Html->url('/users/register/')?>">Sign-up</a></li>
                         <?php if ($this->Session->check('username')) { ?>
-                            <li><a href="<?php echo $this->Html->url('/Users/logout/')?>">Logout</a></li>
+                            <li><a href="<?php echo $this->Html->url('/users/logout/')?>">Logout</a></li>
                         <?php
                         } else { ?>
-                            <li><a href="<?php echo $this->Html->url('/Users/login/')?>">Login</a></li>
+                            <li><a href="<?php echo $this->Html->url('/users/login/')?>">Login</a></li>
                         <?php } ?>
 
-                        <li><a href="<?php echo $this->Html->url('/Wishlists')?>">Wishlist</a></li>
+                        <li><a href="<?php echo $this->Html->url('/wishlists')?>">Wishlist</a></li>
                     </ul>
                 </section>
                 <section class="footer-box">
                     <ul>
-                        <li><a href="<?php echo $this->Html->url('/Users/register/')?>"><h2>SIGN-UP now</h2> and start selling your work!</a></li>
+                        <li><a href="<?php echo $this->Html->url('/users/register/')?>"><h2>SIGN-UP now</h2> and start selling your work!</a></li>
                     </ul>
                 </section>
                 <section class="footer-box">

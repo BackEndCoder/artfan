@@ -1,11 +1,3 @@
-<?php
-
-if (!Configure::read('debug')):
-    throw new NotFoundException();
-endif;
-App::uses('Debugger', 'Utility');
-?>
-
 <style type='text/css' media='screen'>
 	.collapse {
 		display: none;
@@ -266,20 +258,20 @@ App::uses('Debugger', 'Utility');
 
 				<div class='popbox'> 
 					<div class="myhoverlink">
-						<?php echo $this->Html->link($product['Product']['title'], array('action' => 'index', 'controller' => 'ProductDetails', $id)); ?>
+						<?php echo $this->Html->link($product['Product']['title'], array('action' => 'view', 'controller' => 'products', $id)); ?>
 						<div class='collapse'>
 							<div class="pop_close"><img src="<?php echo $this->base . '/app/webroot/img/close.png';?>" style="width:20px; height: 20px;"></div>							
 							<img src="<?php echo $images; ?>" style="width:280px; height: auto;"/>
 
 							<div class="sep">
-							<?php echo $this->Html->link($product['Product']['title'], array('action' => 'index', 'controller' => 'ProductDetails', $id)); ?>
+							<?php echo $this->Html->link($product['Product']['title'], array('action' => 'view', 'controller' => 'products', $id)); ?>
 							</div>
 							<p class="product_des"><?php echo $this->Text->truncate($product['Product']['description'], 50); ?></p>
 			                <p class="product_price">&pound; <?php echo $product['Product']['price']; ?></p>
 
 							<p>
 							<br/>
-							<a href="<?php echo $this->Html->url('/ProductDetails/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a> 
+							<a href="<?php echo $this->Html->url('/products/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a> 
         					<a href="<?php echo $this->Html->url('/Wishlists/add/') . $id; ?>" class="wishlist" style="color: #FFF;">Wishlist</a>							
 							</p>
 						</div>    

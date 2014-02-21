@@ -1,30 +1,9 @@
-<?php
-/**
- *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Layouts
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-$cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php echo $this->Html->charset(); ?>
         <title>
-            <?php echo $cakeDescription ?>:
-            <?php echo $title_for_layout; ?>
+            <?php echo $title_for_layout; ?> - Artfan.co.uk Where the artists meet
         </title>
         <?php
         echo $this->Html->meta('icon');
@@ -91,16 +70,16 @@ $cakeDescription = __d('cake_dev', 'Artfan: Where the artists meet');
                     <li><?php echo $this->Html->link('Search', array('plugin' => null,'controller' => 'products', 'action' => 'search')); ?></li>
                     <li><?php echo $this->Html->link('Artists', array('plugin' => null,'controller' => 'artists', 'action' => 'lists')); ?></li>
                     <li><?php echo $this->Html->link('Be Inspired', array('plugin' => null,'controller' => 'inspired', 'action' => 'index')); ?></li>
-                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'products', 'action' => 'giftcard')); ?></li>
+                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'products', 'action' => 'giftcards')); ?></li>
 					<?php /*<li><?php echo $this->Html->link('Wishlist', array('controller' => 'Wishlists', 'action' => 'index')); ?></li> */ ?>
                     <li><?php echo $this->Html->link('Get in Touch', '/contact'); ?></li>
                 </ul>
                 <div class="signup">
                     <ul>
                         <?php if (!isset($current_user)): ?>
-                        <li><a href="<?php echo $this->Html->url('/Users/register'); ?>"> <img src="<?php echo $this->base; ?>/img/signup.png"  alt="signup " />Sign up</a></li>
+                        <li><a href="<?php echo $this->Html->url('/users/register'); ?>"> <img src="<?php echo $this->base; ?>/img/signup.png"  alt="signup " />Sign up</a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo $this->Html->url('/Wishlists'); ?>"> <img src="<?php echo $this->base; ?>/img/wishlist.png"  alt="wishlist" />Wishlist</a></li>
+                        <li><a href="<?php echo $this->Html->url('/wishlists'); ?>"> <img src="<?php echo $this->base; ?>/img/wishlist.png"  alt="wishlist" />Wishlist</a></li>
                         <li>
                             <?php if (isset($current_user)): ?>
                                 <?php echo $this->Html->link('Logout', array('plugin' => null, 'controller' => 'Users', 'action' => 'logout')); ?>

@@ -11,24 +11,24 @@
         echo $this->Html->css(array(
             '/Contactform/css/Contactform.css'
         ));
-        echo $this->Form->create('Product');
-            echo $this->Form->input("Category", array(
+        echo $this->Form->create('Product',array('action'=>'index','type' => 'GET'));
+            echo $this->Form->input("category", array(
                 'options' => $catname,
                 'empty' => '(select)',
                 'selected' => $search_cat,
                 'label' => __d('Product', 'Category')
             ));
-            echo $this->Form->input('Colour', array(
+            echo $this->Form->input('color', array(
                 'options' => $colorname,
                 'empty' => '(select)',
                 'selected' => $search_color,
             ));
-            echo $this->Form->input('Style', array(
+            echo $this->Form->input('style', array(
                'options' => $stylename,
                'empty' => '(select)',
                'selected' => $search_style,
             ));
-            echo $this->Form->input('Price Range', array(
+            echo $this->Form->input('price', array(
                 'options' => $pricerange,
                 'empty' => '(select)',
                 'selected' => '',

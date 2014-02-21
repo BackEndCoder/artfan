@@ -12,29 +12,32 @@ class ProductsController extends AppController {
 	public $giftStyleId = 11;
 
 	public function index() {
-
+		foreach ($this->request->params as $k => $v):
+        	$$k = $v;
+        endforeach;
+        foreach ($this->request->query as $k => $v):
+        	$$k = $v;
+        endforeach;
 		$options = array(
 			'limit' => 20,
 			'order' => array('Product.id' => 'asc'),
-			// All other than below IDs that represent giftcards
 			'conditions' => array(array('Product.category_id NOT' => $this->giftCategoryId,
 			'Product.color_id NOT' => $this->giftColorId,
 			'Product.style_id NOT' => $this->giftStyleId
 			)));
-
-if(!empty($this->request->named['category'])){
-		$this->set('catname', $this->Product->Category->getCategoryName($this->request->named['category']));
-		$options['conditions'][0]['Product.category_id'] = $this->request->named['category'];
-}
-if(!empty($this->request->named['color'])){
-		$this->set('colorname', $this->Product->Color->getColorName($this->request->named['color']));
-		$options['conditions'][0]['Product.color_id'] = $this->request->named['color'];
-}
-if(!empty($this->request->named['style'])){
-		$this->set('stylename', $this->Product->Style->getStyleName($this->request->named['style']));
-		$options['conditions'][0]['Product.style_id'] = $this->request->named['style'];
-}
-$this->paginate = $options;
+		if(!empty($category)){
+			$this->set('catname', $this->Product->Category->getCategoryName($category));
+			$options['conditions'][0]['Product.category_id'] = $category;
+		}
+		if(!empty($color)){
+			$this->set('colorname', $this->Product->Color->getColorName($color));
+			$options['conditions'][0]['Product.color_id'] = $color;
+		}
+		if(!empty($style)){
+			$this->set('stylename', $this->Product->Style->getStyleName($style));
+			$options['conditions'][0]['Product.style_id'] = $style;
+		}
+		$this->paginate = $options;
 		$products = $this->paginate('Product');
 		$this->set('products', $products);
 		$this->layout = "default";
@@ -228,7 +231,7 @@ $this->paginate = $options;
 ///GIFTCARD
 
 
-	public function giftcard() {
+	public function giftcards() {
 		// If user is logged in and there is a post /put request add to card
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Auth->loggedIn()) {

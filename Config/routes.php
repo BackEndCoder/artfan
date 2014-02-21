@@ -25,7 +25,7 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
         Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-        Router::connect('/giftcards', array('controller' => 'products', 'action' => 'giftcard_index'));
+        Router::connect('/giftcards', array('controller' => 'products', 'action' => 'giftcards'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

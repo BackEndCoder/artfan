@@ -93,7 +93,7 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());
 	}
 
-	public function index() {
+	public function admin_index() {
 		$this->layout = 'admin';
 
 		$data = $this->paginate('User');
@@ -102,7 +102,7 @@ class UsersController extends AppController {
 		//$this->set('users', $this->User->find('all'));
 	}
 
-	public function view($id = null) {
+	public function admin_view($id = null) {
 		$this->layout = 'admin';
 
 		$this->User->id = $id;
@@ -412,7 +412,7 @@ class UsersController extends AppController {
 		}
 	}
 
-	public function edit($id = null) {
+	public function admin_edit($id = null) {
 		$this->layout = 'admin';
 
 		$this->User->id = $id;
@@ -432,7 +432,7 @@ class UsersController extends AppController {
 		}
 	}
 
-	public function delete($id = null) {
+	public function admin_delete($id = null) {
 		$this->layout = 'admin';
 
 		if ($this->request->is('get')) {

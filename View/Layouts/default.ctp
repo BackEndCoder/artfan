@@ -116,7 +116,7 @@
                 <section class="footer-box">
                     <ul>
                         <li><?php echo $this->Html->link('Contact', $this->base . '/contact')?></li>
-                        <li><?php echo $this->Html->link('Shipping and Delivery',$this->base . '/ShippingAndDelivery')?></li>
+                        <li><?php echo $this->Html->link('Shipping and Delivery',$this->base . '/shipping-delivery')?></li>
                     </ul>
                 </section>
                 <section class="footer-box">

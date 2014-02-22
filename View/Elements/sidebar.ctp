@@ -81,7 +81,7 @@ $this->start('sidebar.block');
         </div>
     </div>
     <?php
-        $perfectgiftPage = $this->requestAction('/contents/getContent/4');
+        $perfectgiftPage = $this->requestAction('/content_manager/contents/getContent/4');
     ?>
     <div class="aside-box">
         <div class="aside-box-title">

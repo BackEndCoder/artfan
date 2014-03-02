@@ -306,7 +306,3 @@
         $('#slider').nivoSlider();
     });
 </script>
-
-
-
-

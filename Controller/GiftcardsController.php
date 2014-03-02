@@ -204,7 +204,7 @@ class GiftcardsController extends AppController {
 		}
 
 		// List only giftcarded items (color, cat and style all must be giftcard)
-		$this->set('giftcard', $this->Giftcard->getGiftCards());
+		$this->set('giftcards', $this->Giftcard->getGiftCardList());
 	}
 
 	public function beforeFilter() {

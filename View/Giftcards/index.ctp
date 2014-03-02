@@ -31,19 +31,32 @@ $this->Html->addCrumb('Giftcards', $this->here);
                 <form method="post" action="/Giftcards/index">
                     <table>
                         <tr>
-                            <td><label for="giftcard">Voucher amount:</label></td>
-                            <td><select name="giftcard" id="giftcard">
+                            <td><label for="GiftcardId">Voucher amount:</label></td>
+                            <td>
                             <?php
-                                foreach ($giftcard as $i){ ?>
-                                print_r($i);
-                                  <option value="<?php echo $i['Giftcard']['id']; ?>">£<?php echo number_format($i['Giftcard']['price']); ?></option>
-                           <?php } ?>
-                           </select></td>
+                              echo $this->Form->input('Giftcard.id', array(
+                                'div' => false,
+                                'label' => false,
+                                'options' => $giftcards,
+                                'empty' => '(choose one)'
+                                ));
+                            ?>
+                            </td>
                        </tr>
                        <tr>
-                           <td><label for="note">Add a personal note:</label></td>
+                           <td><label for="GiftcardCodeNote">Add a personal note:</label></td>
                            <!--<td><input type="textarea" value="" name="note" id="note" /></td>-->
-                           <td><textarea rows="4" cols="50"></textarea></td>
+                           <td>
+                            <?php
+                              echo $this->Form->input('GiftcardCode.note', array(
+                                'div' => false,
+                                'label' => false,
+                                'type' => 'textarea',
+                                'cols' => 50,
+                                'rows' => 4
+                                ));
+                            ?>
+                           </td>
                        </tr>
                        <tr>
                            <td><label for="send">Add to basket:</label></td>

@@ -32,4 +32,13 @@ class Giftcard extends AppModel {
             	)
             );
     }
+
+    function getGiftCardList() {
+        return $this->find('list',
+            array(
+                'limit' => 8,
+                'order' => array('Giftcard.id DESC')
+                )
+            );
+    }
 }

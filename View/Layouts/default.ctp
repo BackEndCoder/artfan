@@ -70,7 +70,7 @@
                     <li><?php echo $this->Html->link('Search', array('plugin' => null,'controller' => 'products', 'action' => 'search')); ?></li>
                     <li><?php echo $this->Html->link('Artists', array('plugin' => null,'controller' => 'artists', 'action' => 'lists')); ?></li>
                     <li><?php echo $this->Html->link('Be Inspired', array('plugin' => null,'controller' => 'inspired', 'action' => 'index')); ?></li>
-                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'products', 'action' => 'giftcards')); ?></li>
+                    <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'giftcards', 'action' => 'index')); ?></li>
 					<?php /*<li><?php echo $this->Html->link('Wishlist', array('controller' => 'Wishlists', 'action' => 'index')); ?></li> */ ?>
                     <li><?php echo $this->Html->link('Get in Touch', '/contact'); ?></li>
                 </ul>

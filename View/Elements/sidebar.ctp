@@ -21,7 +21,7 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($categories as $cat_id => $category): ?>
                             <?php if ($category_gift_id != $cat_id) { ?>
-                            <li><?php echo $this->Html->link($category, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'category' => $cat_id)); ?>
+                            <li><?php echo $this->Html->link($category, array('plugin' => null, 'controller' => 'art', 'action' => 'index', 'category' => $cat_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>
@@ -32,7 +32,7 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($colors as $color_id => $color): ?>
                             <?php if ($color_id != $color_gift_id) { ?>
-                            <li><?php echo $this->Html->link($color, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'color' => $color_id)); ?>
+                            <li><?php echo $this->Html->link($color, array('plugin' => null, 'controller' => 'art', 'action' => 'index', 'color' => $color_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>
@@ -43,19 +43,19 @@ $this->start('sidebar.block');
                     <ul>
                         <?php foreach ($styles as $style_id => $style): ?>
                             <?php if ($style_id != $style_gift_id) { ?>
-                            <li><?php echo $this->Html->link($style, array('plugin' => null, 'controller' => 'products', 'action' => 'index', 'style' => $style_id)); ?>
+                            <li><?php echo $this->Html->link($style, array('plugin' => null, 'controller' => 'art', 'action' => 'index', 'style' => $style_id)); ?>
                             <?php }endforeach; ?>
                     </ul>
                 </li>
                 <li><span class="drop"><img src="<?php echo $this->base; ?>/img/drop.png" width="7" height="16" alt="drop" /></span><a href="#">Prices</a>
                     <ul>
                         <?php /* hard coded ranges */ ?>
-                        <li><?php echo $this->Html->link('Less than £250',  array('plugin' => null, 'controller' => 'products', 'action' => 'price', '1')); ?></li>
-                        <li><?php echo $this->Html->link('£250 - £500', array('plugin' => null, 'controller' => 'products', 'action' => 'price', '2')); ?></li>
-                        <li><?php echo $this->Html->link('£500 - £1,000',  array('plugin' => null, 'controller' => 'products', 'action' => 'price', '3')); ?></li>
-                        <li><?php echo $this->Html->link('£1,000 - £2,000', array('plugin' => null, 'controller' => 'products', 'action' => 'price', '4')); ?></li>
-                        <li><?php echo $this->Html->link('£2,000 - £10,000',  array('plugin' => null, 'controller' => 'products', 'action' => 'price', '5')); ?></li>
-                        <li><?php echo $this->Html->link('More than £10,000',  array('plugin' => null, 'controller' => 'products', 'action' => 'price', '6')); ?></li>
+                        <li><?php echo $this->Html->link('Less than £250',  array('plugin' => null, 'controller' => 'art', 'action' => 'price', '1')); ?></li>
+                        <li><?php echo $this->Html->link('£250 - £500', array('plugin' => null, 'controller' => 'art', 'action' => 'price', '2')); ?></li>
+                        <li><?php echo $this->Html->link('£500 - £1,000',  array('plugin' => null, 'controller' => 'art', 'action' => 'price', '3')); ?></li>
+                        <li><?php echo $this->Html->link('£1,000 - £2,000', array('plugin' => null, 'controller' => 'art', 'action' => 'price', '4')); ?></li>
+                        <li><?php echo $this->Html->link('£2,000 - £10,000',  array('plugin' => null, 'controller' => 'art', 'action' => 'price', '5')); ?></li>
+                        <li><?php echo $this->Html->link('More than £10,000',  array('plugin' => null, 'controller' => 'art', 'action' => 'price', '6')); ?></li>
                     </ul>
                 </li>
             </ul>

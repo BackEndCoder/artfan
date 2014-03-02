@@ -223,4 +223,7 @@ class GiftcardsController extends AppController {
 		$this->layout = "default";
 	}
 
+	public function getGiftcards() {
+		return $this->Giftcard->getGiftcards();
+	}
 }

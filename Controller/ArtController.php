@@ -523,4 +523,8 @@ class ArtController extends AppController {
 			return 1;
 		}
 	}
+
+	public function getArt() {
+		return $this->Art->getArt();
+	}
 }

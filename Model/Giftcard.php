@@ -1,8 +1,14 @@
 <?php
 class Giftcard extends AppModel {
 
-    public $belongsTo = array('User');
-					
+    public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'dependent' => true,
+            'foreignKey' => 'author'
+        	)
+		);
+
  	public $validate = array(
  		'title' => array(
  			'rule' => 'notEmpty',

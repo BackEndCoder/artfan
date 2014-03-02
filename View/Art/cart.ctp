@@ -5,7 +5,7 @@ $this->Html->addCrumb('Cart', $this->here);
 $total = 0;
 ?>
 
-<form method="post" action="<?php echo $this->base;?>/products/updateCart">
+<form method="post" action="<?php echo $this->base;?>/art/updateCart">
 
 <div class="left_cart">
     <h2 class="cart_icon">Shopping Bag</h2>
@@ -13,14 +13,14 @@ $total = 0;
 </div>
 <div class="cart_link">
     <ul>
-        <li><a href="<?php echo $this->base; ?>/Products/all">Continue Shopping</a></li>
+        <li><a href="<?php echo $this->base; ?>/Art/all">Continue Shopping</a></li>
         <li><a href="<?php echo $this->base; ?>/Checkout" class="pink_link">Next</a></li>
     </ul>
 </div>
 <table class="align">
     <thead>
         <tr class="cart_heading">
-            <th>Product</th>
+            <th>Art</th>
             <th>Description</th>
             <th>Price&nbsp;(&pound;)</th>
             <th>Quantity</th>
@@ -35,19 +35,19 @@ $total = 0;
     </thead>
 
     <tbody>
-<?php foreach ($products as $product): ?>
+<?php foreach ($art as $art): ?>
         <tr>
-            <td class="title_product"><?php echo $product['Product']['title']; ?></td>
-            <td style="text-align:left;"><?php echo $product['Product']['description']; ?></td>
-            <td ><span class="price_box"><?php echo $product['Product']['price']; ?></span></td>
+            <td class="title_art"><?php echo $art['Art']['title']; ?></td>
+            <td style="text-align:left;"><?php echo $art['Art']['description']; ?></td>
+            <td ><span class="price_box"><?php echo $art['Art']['price']; ?></span></td>
             <td>
 				<span class="price_box">
-					<input type="text" name="prod_qty[]" value="<?php echo $product['Product']['Quantity']; ?>" style="width:50px;" />
-					<input type="hidden" name="prod_id[]" value="<?php echo $product['Product']['id']; ?>"  />
+					<input type="text" name="prod_qty[]" value="<?php echo $art['Art']['Quantity']; ?>" style="width:50px;" />
+					<input type="hidden" name="prod_id[]" value="<?php echo $art['Art']['id']; ?>"  />
 				</span>
 			</td>            
-            <td><span class="price_box"><?php echo $product['Product']['price']*$product['Product']['Quantity']; ?></td>
-            <?php $total+= $product['Product']['price']*$product['Product']['Quantity']; ?>
+            <td><span class="price_box"><?php echo $art['Art']['price']*$art['Art']['Quantity']; ?></td>
+            <?php $total+= $art['Art']['price']*$art['Art']['Quantity']; ?>
         </tr>
 <?php endforeach; ?>
 		<tr>

@@ -1,11 +1,11 @@
 <?php
-echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true));
+echo $this->Form->create('Giftcard', array('type' => 'file', 'novalidate' => true));
 ?>
 <fieldset>
-    <legend>Add Product<span class="arrowss1177"></span></legend>
+    <legend>Add Giftcard<span class="arrowss1177"></span></legend>
     <div class="actions">
         <ul>
-            <li><?php echo $this->Html->link('List Products', array('action' => 'index')); ?></li>
+            <li><?php echo $this->Html->link('List Art', array('action' => 'index')); ?></li>
         </ul>
     </div>
     <div class="clearfix"></div>
@@ -24,9 +24,9 @@ echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true
 		echo '<div class="clr"></div>';		
 		echo $this->Form->input('color_id', array('type' => 'select', 'options' => $colors, 'empty' => '--Select--'));
 		echo '<div class="clr"></div>';		
-		echo '<div class="input"><label for="ProductImages">Product Image</label>';
+		echo '<div class="input"><label for="GiftcardImages">Giftcard Image</label>';
     ?>    
-	<input type="file" name="data[Product][myimage][]" multiple="multiple" id="ProductImages">	
+	<input type="file" name="data[Giftcard][myimage][]" multiple="multiple" id="GiftcardImages">	
 	<?php echo '</div>'; 	
 	
 	?>
@@ -36,21 +36,21 @@ echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true
 
 <script type='text/javascript' charset='utf-8'>
     $(document).ready(function(){	
-		$( "#ProductAddForm" ).submit(function( event ) {
-			var ProductTitle 		= $('#ProductTitle').val();
-			var ProductDescription 	= $('#ProductDescription').val();
-			var ProductPrice 		= $('#ProductPrice').val();				
-			var ProductCategoryId	= $('#ProductCategoryId').val();
-			var ProductStyleId			= $('#ProductStyleId').val();
-			var ProductColorId			= $('#ProductColorId').val();			
-			var img = $('#ProductImages').val();			
+		$( "#GiftcardAddForm" ).submit(function( event ) {
+			var GiftcardTitle 		= $('#GiftcardTitle').val();
+			var GiftcardDescription 	= $('#GiftcardDescription').val();
+			var GiftcardPrice 		= $('#GiftcardPrice').val();				
+			var GiftcardCategoryId	= $('#GiftcardCategoryId').val();
+			var GiftcardStyleId			= $('#GiftcardStyleId').val();
+			var GiftcardColorId			= $('#GiftcardColorId').val();			
+			var img = $('#GiftcardImages').val();			
 			if(
-				ProductTitle!='' &&
-				ProductDescription!='' &&
-				ProductPrice!='' &&
-				ProductCategoryId!='' &&
-				ProductStyleId!='' &&
-				ProductColorId!=''
+				GiftcardTitle!='' &&
+				GiftcardDescription!='' &&
+				GiftcardPrice!='' &&
+				GiftcardCategoryId!='' &&
+				GiftcardStyleId!='' &&
+				GiftcardColorId!=''
 			) {
 				if(img=='') {
 					alert('Image is empty');

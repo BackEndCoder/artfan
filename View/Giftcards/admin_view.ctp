@@ -1,5 +1,3 @@
-<?php ?>
-
 <table cellpatding="0" cellspacing="0" class="table table-condensed table-bordered">
     <tr>
         <td<?php
@@ -8,27 +6,27 @@
         ?></td>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Id</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Product']['id']; ?>
+            <?php echo $giftcard['Giftcard']['id']; ?>
             &nbsp;</td>
     </tr>
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Name</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Product']['title']; ?>
+            <?php echo $giftcard['Giftcard']['title']; ?>
             &nbsp;
         </td>
     </tr>
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Description</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Product']['description']; ?>
+            <?php echo $giftcard['Giftcard']['description']; ?>
             &nbsp;
         </td>
     </tr>
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Price</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Product']['price']; ?>
+            <?php echo $giftcard['Giftcard']['price']; ?>
             &nbsp;
         </td>
     </tr>
@@ -36,14 +34,14 @@
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Category</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Category']['catname']; ?>
+            <?php echo $giftcard['Category']['catname']; ?>
             &nbsp;
         </td>
     </tr>
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Style</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Style']['stylename']; ?>
+            <?php echo $giftcard['Style']['stylename']; ?>
             &nbsp;
         </td>
     </tr>
@@ -52,18 +50,18 @@
     <tr>
         <td<?php if ($i % 2 == 0) echo $class; ?>>Color</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
-            <?php echo $product['Color']['colorname']; ?>
+            <?php echo $giftcard['Color']['colorname']; ?>
             &nbsp;
         </td>
     </tr>
     <tr>    
-        <td<?php if ($i % 2 == 0) echo $class; ?>>Product Images</td>
+        <td<?php if ($i % 2 == 0) echo $class; ?>>Giftcard Images</td>
         <td<?php if ($i++ % 2 == 0) echo $class; ?>>
             <?php
             if (!empty($imagesList)) {
                 foreach ($imagesList as $image) {
                     echo "<div>";
-                    echo "<img class='productImage' src='" . $image . "' alt='productImage' witdh='70'  />";
+                    echo "<img class='giftcardImage' src='" . $image . "' alt='giftcardImage' witdh='70'  />";
                     echo "</div>";
                 }
             }

@@ -11,12 +11,12 @@
         echo $this->Html->css(array(
             '/Contactform/css/Contactform.css'
         ));
-        echo $this->Form->create('Product',array('action'=>'index','type' => 'GET'));
+        echo $this->Form->create('Art',array('action'=>'index','type' => 'GET'));
             echo $this->Form->input("category", array(
                 'options' => $catname,
                 'empty' => '(select)',
                 'selected' => $search_cat,
-                'label' => __d('Product', 'Category')
+                'label' => __d('Art', 'Category')
             ));
             echo $this->Form->input('color', array(
                 'options' => $colorname,
@@ -47,9 +47,9 @@
             </div>
         <?php } else { ?>
             <?php foreach ($search_results as $s){
-                    $id = $s['Product']['id'];
-                    $folder_url = WWW_ROOT . "/files/ProductImages/" . $id . "/";
-                    $http_url = $this->base . "/files/ProductImages/" . $id . "/";
+                    $id = $s['Art']['id'];
+                    $folder_url = WWW_ROOT . "/files/ArtImages/" . $id . "/";
+                    $http_url = $this->base . "/files/ArtImages/" . $id . "/";
                     $images = '';
                     if (is_dir($folder_url) != 1) {
 
@@ -64,11 +64,11 @@
                     ?>
                 <div class="search-results-item">
                     <ul>
-                    <li><b>Title:&nbsp;</b><?php echo $s['Product']['title']; ?></li>
+                    <li><b>Title:&nbsp;</b><?php echo $s['Art']['title']; ?></li>
                         <li><img src="<?php echo $images; ?>" alt="iphone"  class="" /></li>
-                        <!--<li>Description: <?php echo $s['Product']['description']; ?></li>-->
+                        <!--<li>Description: <?php echo $s['Art']['description']; ?></li>-->
                         <li><b>Author:&nbsp;</b><?php echo $s['User']['username']; ?></li>
-                        <li><b>Price:&nbsp;</b><?php echo $s['Product']['price']; ?></li>
+                        <li><b>Price:&nbsp;</b><?php echo $s['Art']['price']; ?></li>
                     </ul>
                 </div>
             <?php } ?>

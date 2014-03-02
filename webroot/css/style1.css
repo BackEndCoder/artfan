@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*Product list page css goes here*/
+/*Art list page css goes here*/
 .pagination{
 	border-bottom:1px solid #6b6b6b;
 	margin:0 10px;
@@ -41,7 +41,7 @@
 	padding:3px 0 3px 10px;
 	width:234px;
 }
-.product-des p{
+.art-des p{
 	padding-top:10px;
 }
 ul.main-col4 li h4{

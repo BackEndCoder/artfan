@@ -1,11 +1,9 @@
-<?php
-echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true));
-?>
+<?php echo $this->Form->create('Art', array('type' => 'file', 'novalidate' => true)); ?>
 <fieldset>
-    <legend>Add Product<span class="arrowss1177"></span></legend>
+    <legend>Add Art<span class="arrowss1177"></span></legend>
     <div class="actions">
         <ul>
-            <li><?php echo $this->Html->link('List Products', array('action' => 'index')); ?></li>
+            <li><?php echo $this->Html->link('List Art', array('action' => 'index')); ?></li>
         </ul>
     </div>
     <div class="clearfix"></div>
@@ -24,9 +22,9 @@ echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true
 		echo '<div class="clr"></div>';		
 		echo $this->Form->input('color_id', array('type' => 'select', 'options' => $colors, 'empty' => '--Select--'));
 		echo '<div class="clr"></div>';		
-		echo '<div class="input"><label for="ProductImages">Product Image</label>';
+		echo '<div class="input"><label for="ArtImages">Art Image</label>';
     ?>    
-	<input type="file" name="data[Product][myimage][]" multiple="multiple" id="ProductImages">	
+	<input type="file" name="data[Art][myimage][]" multiple="multiple" id="ArtImages">	
 	<?php echo '</div>'; 	
 	
 	?>
@@ -36,21 +34,21 @@ echo $this->Form->create('Product', array('type' => 'file', 'novalidate' => true
 
 <script type='text/javascript' charset='utf-8'>
     $(document).ready(function(){	
-		$( "#ProductAddForm" ).submit(function( event ) {
-			var ProductTitle 		= $('#ProductTitle').val();
-			var ProductDescription 	= $('#ProductDescription').val();
-			var ProductPrice 		= $('#ProductPrice').val();				
-			var ProductCategoryId	= $('#ProductCategoryId').val();
-			var ProductStyleId			= $('#ProductStyleId').val();
-			var ProductColorId			= $('#ProductColorId').val();			
-			var img = $('#ProductImages').val();			
+		$( "#ArtAddForm" ).submit(function( event ) {
+			var ArtTitle 		= $('#ArtTitle').val();
+			var ArtDescription 	= $('#ArtDescription').val();
+			var ArtPrice 		= $('#ArtPrice').val();				
+			var ArtCategoryId	= $('#ArtCategoryId').val();
+			var ArtStyleId			= $('#ArtStyleId').val();
+			var ArtColorId			= $('#ArtColorId').val();			
+			var img = $('#ArtImages').val();			
 			if(
-				ProductTitle!='' &&
-				ProductDescription!='' &&
-				ProductPrice!='' &&
-				ProductCategoryId!='' &&
-				ProductStyleId!='' &&
-				ProductColorId!=''
+				ArtTitle!='' &&
+				ArtDescription!='' &&
+				ArtPrice!='' &&
+				ArtCategoryId!='' &&
+				ArtStyleId!='' &&
+				ArtColorId!=''
 			) {
 				if(img=='') {
 					alert('Image is empty');

@@ -10,43 +10,43 @@ class GiftcardsController extends AppController {
 		if ($user['role_id'] == 1) {
 			$this->paginate = array(
 				'limit' => 10,
-				'order' => array('Product.id' => 'asc'),
-				'conditions' => array('Product.category_id NOT' => $this->giftCategoryId,
-					'Product.color_id NOT' => $this->giftColorId,
-					'Product.style_id NOT' => $this->giftStyleId
+				'order' => array('Giftcard.id' => 'asc'),
+				'conditions' => array('Giftcard.category_id NOT' => $this->giftCategoryId,
+					'Giftcard.color_id NOT' => $this->giftColorId,
+					'Giftcard.style_id NOT' => $this->giftStyleId
 					)
 				);
-			$products = $this->paginate('Product');
+			$giftcards = $this->paginate('Giftcard');
 		} else {
 			$this->paginate = array(
 				'limit' => 10,
 				'conditions' => array(
-					'Product.author' => $user['id'],
-					'Product.category_id NOT' => $this->giftCategoryId,
-					'Product.color_id NOT' => $this->giftColorId,
-					'Product.style_id NOT' => $this->giftStyleId
+					'Giftcard.author' => $user['id'],
+					'Giftcard.category_id NOT' => $this->giftCategoryId,
+					'Giftcard.color_id NOT' => $this->giftColorId,
+					'Giftcard.style_id NOT' => $this->giftStyleId
 					),
-				'order' => array('Product.id' => 'asc')
+				'order' => array('Giftcard.id' => 'asc')
 				);
-			$products = $this->paginate('Product');
+			$giftcards = $this->paginate('Giftcard');
 		}
 
-		$this->set('products', $products);
+		$this->set('giftcards', $giftcards);
 	}
 
 	public function admin_add() {
 		$user = $this->Auth->user();
 
 		if ($user['role_id'] == 1) {
-			$categories = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname')));
-			$styles = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename')));
-			$colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname')));
+			$categories = $this->Giftcard->Category->find('list', array('fields' => array('Category.id', 'Category.catname')));
+			$styles = $this->Giftcard->Style->find('list', array('fields' => array('Style.id', 'Style.stylename')));
+			$colors = $this->Giftcard->Color->find('list', array('fields' => array('Color.id', 'Color.colorname')));
 		} else {
-			$categories = $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
+			$categories = $this->Giftcard->Category->find('list', array('fields' => array('Category.id', 'Category.catname'),
 				'conditions' => array('id NOT' => $this->giftCategoryId)));
-			$styles = $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
+			$styles = $this->Giftcard->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'),
 				'conditions' => array('id NOT' => $this->giftStyleId)));
-			$colors = $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
+			$colors = $this->Giftcard->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'),
 				'conditions' => array('id NOT' => $this->giftColorId)));
 		}
 		$this->set('categories', $categories);
@@ -55,38 +55,38 @@ class GiftcardsController extends AppController {
 
 		$user = $this->Auth->user();
 		if ($this->request->is('post')) {
-			$IsImgValid = $this->validateProductImg();
-			if ($this->Product->save($this->data)) {
-				$InsertId = $this->Product->id;
-				$folderUrl = WWW_ROOT . "files/ProductImages/" . $InsertId . "/";
+			$IsImgValid = $this->validateGiftcardImg();
+			if ($this->Giftcard->save($this->data)) {
+				$InsertId = $this->Giftcard->id;
+				$folderUrl = WWW_ROOT . "files/GiftcardImages/" . $InsertId . "/";
 				if (is_dir($folderUrl) != 1) {
 					mkdir($folderUrl);
 				}
-				$image = $this->data['Product']['myimage'];
+				$image = $this->data['Giftcard']['myimage'];
 				foreach ($image as $item) {
 					move_uploaded_file($item['tmp_name'], $folderUrl . $item['name']);
 				}
 				$this->redirect(array('action' => 'index'));
-				$this->Session->setFlash("The product has been saved");
+				$this->Session->setFlash("The giftcard has been saved");
 			}
 			else {
-				$this->Session->setFlash('The product could not be saved. Please, try again.');
+				$this->Session->setFlash('The giftcard could not be saved. Please, try again.');
 			}
 		}
 	}
 
-	public function validateProductImg() {
+	public function validateGiftcardImg() {
 		return false;
 	}
 
 	public function admin_edit($id = null) {
-		$this->Product->id = $id;
+		$this->Giftcard->id = $id;
 
-		if (!$this->Product->exists()) {
-			throw new NotFoundException('Invalid Product');
+		if (!$this->Giftcard->exists()) {
+			throw new NotFoundException('Invalid Giftcard');
 		}
 
-		$folderUrl = WWW_ROOT . "files/ProductImages/" . $id . "/";
+		$folderUrl = WWW_ROOT . "files/GiftcardImages/" . $id . "/";
 
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$deletedImages = $this->data['deletedImages'];
@@ -97,20 +97,20 @@ class GiftcardsController extends AppController {
 					unlink($folderUrl . $imageName[count($imageName) - 1]);
 				}
 			}
-			$image = $this->data['Product']['myimage'];
+			$image = $this->data['Giftcard']['myimage'];
 			foreach ($image as $item) {
 				move_uploaded_file($item['tmp_name'], $folderUrl . $item['name']);
 			}
 
-			if ($this->Product->save($this->request->data)) {
-				$this->Session->setFlash('The product has been saved');
+			if ($this->Giftcard->save($this->request->data)) {
+				$this->Session->setFlash('The giftcard has been saved');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('The product could not be saved. Please, try again.');
+				$this->Session->setFlash('The giftcard could not be saved. Please, try again.');
 			}
 		} else {
-			$this->request->data = $this->Product->read();
-			$httpUrl = $this->base . "/files/ProductImages/" . $id . "/";
+			$this->request->data = $this->Giftcard->read();
+			$httpUrl = $this->base . "/files/GiftcardImages/" . $id . "/";
 			$images = array();
 			$featuredImage = '';
 			foreach (new DirectoryIterator($folderUrl) as $fn) {
@@ -126,25 +126,25 @@ class GiftcardsController extends AppController {
 			}
 			$this->set('imagesList', $images);
 		}
-		$this->set('categories', $this->Product->Category->find('list', array('fields' => array('Category.id', 'Category.catname'))));
-		$this->set('styles', $this->Product->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'))));
-		$this->set('colors', $this->Product->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'))));
+		$this->set('categories', $this->Giftcard->Category->find('list', array('fields' => array('Category.id', 'Category.catname'))));
+		$this->set('styles', $this->Giftcard->Style->find('list', array('fields' => array('Style.id', 'Style.stylename'))));
+		$this->set('colors', $this->Giftcard->Color->find('list', array('fields' => array('Color.id', 'Color.colorname'))));
 	}
 
 	public function admin_view($id = null) {
-		$this->Product->id = $id;
+		$this->Giftcard->id = $id;
 
-		if (!$this->Product->exists()) {
-			throw new NotFoundException('Invalid product');
+		if (!$this->Giftcard->exists()) {
+			throw new NotFoundException('Invalid giftcard');
 		}
 
 		if (!$id) {
-			$this->Session->setFlash('Invalid product');
+			$this->Session->setFlash('Invalid giftcard');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('product', $this->Product->read());
-		$folderUrl = WWW_ROOT . "files/ProductImages/" . $id . "/";
-		$httpUrl = $this->base . "/files/ProductImages/" . $id . "/";
+		$this->set('giftcard', $this->Giftcard->read());
+		$folderUrl = WWW_ROOT . "files/GiftcardImages/" . $id . "/";
+		$httpUrl = $this->base . "/files/GiftcardImages/" . $id . "/";
 		$images = array();
 		$featuredImage = '';
 		foreach (new DirectoryIterator($folderUrl) as $fn) {
@@ -168,17 +168,17 @@ class GiftcardsController extends AppController {
 		}
 
 		if (!$id) {
-			$this->Session->setFlash('Invalid id for the product');
+			$this->Session->setFlash('Invalid id for the giftcard');
 			$this->redirect(array('action' => 'index'));
 		}
 
-		if ($this->Product->delete($id)) {
-			$folderUrl = WWW_ROOT . "files/ProductImages/" . $id . "/";
+		if ($this->Giftcard->delete($id)) {
+			$folderUrl = WWW_ROOT . "files/GiftcardImages/" . $id . "/";
 			$this->deleteDir($folderUrl);
-			$this->Session->setFlash('Product deleted');
+			$this->Session->setFlash('Giftcard deleted');
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash('Product was not deleted');
+		$this->Session->setFlash('Giftcard was not deleted');
 		$this->redirect(array('action' => 'index'));
 	}
 
@@ -195,7 +195,7 @@ class GiftcardsController extends AppController {
 			if ($this->Auth->loggedIn()) {
 				// redirect to page to add to cart
 				$id = $this->request->data['giftcard'];
-				$this->redirect(array('controller' => 'products',
+				$this->redirect(array('controller' => 'giftcards',
 					'action' => 'addToCart/' . $id));
 				// redirect to register/login if not logged in
 			} else {

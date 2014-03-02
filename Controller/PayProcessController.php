@@ -6,15 +6,15 @@
  */
 
 /**
- * Description of ProductDetails
+ * Description of ArtDetails
  *
  * @author Wilson<mailwilson007@gmail.com>
  */
  
  
-App::uses('ProductsController', 'Controller');
+App::uses('ArtController', 'Controller');
 App::uses('OrderDetailController', 'Controller');
-App::uses('OrderProductDetailController', 'Controller');
+App::uses('OrderArtDetailController', 'Controller');
 
 App::uses('UsersController', 'Controller');  
 
@@ -131,22 +131,22 @@ class PayProcessController extends AppController {
 			
 			
 			
-		$productsCtrl = new ProductsController();
-        $productsCtrl->constructClasses();		
-        $productArray = $this->Session->read('cart');
-        $products = array();
-        if (count($productArray) > 0) {
-            foreach ($productArray as $cartItemKey => $cartItemValue) {
-                $product = $productsCtrl->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
-                if ($product != null) {
-                    $product['Product']['Quantity'] = $cartItemValue;
-                    $products[] = $product;
+		$artCtrl = new ArtController();
+        $artCtrl->constructClasses();		
+        $artArray = $this->Session->read('cart');
+        $art = array();
+        if (count($artArray) > 0) {
+            foreach ($artArray as $cartItemKey => $cartItemValue) {
+                $art = $artCtrl->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
+                if ($art != null) {
+                    $art['Art']['Quantity'] = $cartItemValue;
+                    $art[] = $art;
                 }
             }
         }
-		$this->set('cartproducts', $products);	
+		$this->set('cartart', $art);	
 		$order_id = $this->insertOrder($ll_user_id);
-		$this->insertOrderProductDetail($order_id);				
+		$this->insertOrderArtDetail($order_id);				
 			
 			
 			
@@ -257,18 +257,18 @@ class PayProcessController extends AppController {
 		}
 		return $rand_str;
 	}
-	function insertOrderProductDetail($order_id) {
-		$objOrderProductDetail = new OrderProductDetailController();				
+	function insertOrderArtDetail($order_id) {
+		$objOrderArtDetail = new OrderArtDetailController();				
 		foreach($_POST['L_NAME'] as $ky=>$vl) {		
-			$product_name 	= $_POST['L_NAME'][$ky];
-			$product_amt 	= $_POST['L_AMT'][$ky];
-			$product_qty 	= $_POST['L_QTY'][$ky];									
-			$data[$ky]['product_name'] = $product_name;
-			$data[$ky]['product_amt'] = $product_amt;
-			$data[$ky]['product_qty'] = $product_qty;
+			$art_name 	= $_POST['L_NAME'][$ky];
+			$art_amt 	= $_POST['L_AMT'][$ky];
+			$art_qty 	= $_POST['L_QTY'][$ky];									
+			$data[$ky]['art_name'] = $art_name;
+			$data[$ky]['art_amt'] = $art_amt;
+			$data[$ky]['art_qty'] = $art_qty;
 			$data[$ky]['order_id'] = $order_id;																													
 		}				
-		$objOrderProductDetail->OrderProductDetail->saveAll($data);		
+		$objOrderArtDetail->OrderArtDetail->saveAll($data);		
 	}
 	
 	function insertOrder($ll_user_id) {

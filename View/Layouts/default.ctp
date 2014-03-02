@@ -52,9 +52,9 @@
                     <ul class="header-cart">
                         <?php echo $this->element('welcome'); ?>
                         <?php echo $this->element('admin_link'); ?>
-                        <li><a href="<?php echo $this->base;?>/products/cart">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
-                        <!--<li><a href="<?php echo $this->base;?>/products/cart"><img style="padding-bottom: 4px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" /></a></li>
-						<li><a href="<?php echo $this->base;?>/products/cart">(&pound; <?php  echo $this->element('header'); ?>)</a></li>-->
+                        <li><a href="<?php echo $this->base;?>/art/cart">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
+                        <!--<li><a href="<?php echo $this->base;?>/art/cart"><img style="padding-bottom: 4px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" /></a></li>
+						<li><a href="<?php echo $this->base;?>/art/cart">(&pound; <?php  echo $this->element('header'); ?>)</a></li>-->
                     </ul>
                     <div class="clr"></div>
                     <div class="phone">
@@ -66,8 +66,8 @@
             <nav>
                 <ul class="menu">
                     <li><a href="<?php echo $this->Html->url('/'); ?>">Home </a></li>
-                    <li><?php echo $this->Html->link('All Art', array('plugin' => null,'controller' => 'products', 'action' => 'index')); ?></li>
-                    <li><?php echo $this->Html->link('Search', array('plugin' => null,'controller' => 'products', 'action' => 'search')); ?></li>
+                    <li><?php echo $this->Html->link('All Art', array('plugin' => null,'controller' => 'art', 'action' => 'index')); ?></li>
+                    <li><?php echo $this->Html->link('Search', array('plugin' => null,'controller' => 'art', 'action' => 'search')); ?></li>
                     <li><?php echo $this->Html->link('Artists', array('plugin' => null,'controller' => 'artists', 'action' => 'lists')); ?></li>
                     <li><?php echo $this->Html->link('Be Inspired', array('plugin' => null,'controller' => 'inspired', 'action' => 'index')); ?></li>
                     <li><?php echo $this->Html->link('Gift Vouchers', array('plugin' => null, 'controller' => 'giftcards', 'action' => 'index')); ?></li>
@@ -107,7 +107,7 @@
 
                 <?php echo $this->Session->flash(); ?>
 
-                <div class="product_content">
+                <div class="art_content">
                     <?php echo $this->fetch('content'); ?>
                 </div>
 

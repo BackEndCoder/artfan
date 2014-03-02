@@ -1,5 +1,5 @@
 <?php
-    $this->Html->addCrumb('All Products', $this->here);
+    $this->Html->addCrumb('All Art', $this->here);
 ?>
 
 <style type='text/css' media='screen'>
@@ -57,13 +57,13 @@
  
 	
 
-<div class="products index">
-    <?php foreach ($products as $product): ?>
-        <div class="products_details">
+<div class="art index">
+    <?php foreach ($art as $art): ?>
+        <div class="art_details">
             <?php
-            $id = $product['Product']['id'];
-            $folder_url = WWW_ROOT . "/files/ProductImages/" . $id . "/";
-            $http_url = $this->base . "/files/ProductImages/" . $id . "/";
+            $id = $art['Art']['id'];
+            $folder_url = WWW_ROOT . "/files/ArtImages/" . $id . "/";
+            $http_url = $this->base . "/files/ArtImages/" . $id . "/";
             $images = '';
             if (is_dir($folder_url) != 1) {
                 
@@ -79,7 +79,7 @@
             <img src="<?php echo $images; ?>" alt="iphone"  class="" />
             <div class="inner_details">
 
-                <p class="product_name">
+                <p class="art_name">
 				
 				
                     
@@ -89,21 +89,21 @@
 					
 				<div class='popbox'> 
 					<div class="myhoverlink">
-						<?php echo $this->Html->link($product['Product']['title'], array('action' => 'view', 'controller' => 'products', $id)); ?>
+						<?php echo $this->Html->link($art['Art']['title'], array('action' => 'view', 'controller' => 'art', $id)); ?>
 						<div class='collapse'>
-							<div class="pop_close"><img src="<?php echo $this->base . '/app/webroot/img/close.png';?>" style="width:20px; height: 20px;"></div>							
+							<div class="pop_close"><img src="/img/close.png" style="width:20px; height: 20px;"></div>							
 							<img src="<?php echo $images; ?>" style="width:280px; height: auto;"/>
 
 							<div class="sep">
-							<?php echo $this->Html->link($product['Product']['title'], array('action' => 'view', 'controller' => 'products', $id)); ?>
+							<?php echo $this->Html->link($art['Art']['title'], array('action' => 'view', 'controller' => 'art', $id)); ?>
 							</div>
-							<p class="product_des"><?php echo $this->Text->truncate($product['Product']['description'], 50); ?></p>
-			                <p class="product_price">&pound; <?php echo $product['Product']['price']; ?></p>
+							<p class="art_des"><?php echo $this->Text->truncate($art['Art']['description'], 50); ?></p>
+			                <p class="art_price">&pound; <?php echo $art['Art']['price']; ?></p>
 							
 							
 							<p>
 							<br/>
-							<a href="<?php echo $this->Html->url('/products/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a> 
+							<a href="<?php echo $this->Html->url('/art/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a> 
         					<a href="<?php echo $this->Html->url('/Wishlists/add/') . $id; ?>" class="wishlist" style="color: #FFF;">Wishlist</a>							
 							</p>
 						</div>    
@@ -115,16 +115,16 @@
 					
 					
 
-                    <?php //echo $product['Product']['title']; ?>
+                    <?php //echo $art['Art']['title']; ?>
 
 
 
                 </p>
-                <p class="product_des"><?php echo $this->Text->truncate($product['Product']['description'], 50); ?></p>
-                <p class="product_price">&pound; <?php echo $product['Product']['price']; ?></p>
-               <!-- <p class="product_cat"><?php echo $product['Category']['catname']; ?></p>
-                <p class="product_color"><?php echo $product['Color']['colorname']; ?></p>
-                <p class="product_style"><?php echo $product['Style']['stylename']; ?></p>-->
+                <p class="art_des"><?php echo $this->Text->truncate($art['Art']['description'], 50); ?></p>
+                <p class="art_price">&pound; <?php echo $art['Art']['price']; ?></p>
+               <!-- <p class="art_cat"><?php echo $art['Category']['catname']; ?></p>
+                <p class="art_color"><?php echo $art['Color']['colorname']; ?></p>
+                <p class="art_style"><?php echo $art['Style']['stylename']; ?></p>-->
             </div>
 
 

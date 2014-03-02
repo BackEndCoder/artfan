@@ -303,7 +303,7 @@ section{
     margin:5px;
     width:180px;
 }
-.product_content{
+.art_content{
     float:left;
 
 }
@@ -336,7 +336,7 @@ ul.footer-social li{
     clear:both;
     list-style:decimal;
 }
-.products_details{
+.art_details{
     float:left;
     margin-right:10px;
 }
@@ -349,23 +349,23 @@ ul.footer-social li{
     padding:0px;
 
 }
-p.product_name{
+p.art_name{
     color: #000000;
     font-family: 'HelveticaNeueCondensedBlack';
     font-size: 16px;
     
     padding-top:5px;
 }
-p.product_des{
+p.art_des{
     font-size: 12px;
     padding-bottom:10px;
 
 }
-.product_price{
+.art_price{
     color:#E3007E;
 
 }
-.product_content{
+.art_content{
     
     width:760px;
     
@@ -374,12 +374,12 @@ p.product_des{
    
 
 }
-.inner_products{
+.inner_art{
     padding-top:37px;
     border-top:1px solid #ccc;
 
 }
-.product_top{
+.art_top{
      
     width:760px;
     float:left;
@@ -637,7 +637,7 @@ padding: 0 0 0 10px;
 .users{
     margin-top:-20px;
 }
-.products  h2{
+.art  h2{
     background: none repeat scroll 0 0 #A3A289;
     border-left: 3px solid #E3007E;
     color: #FFFFFF;
@@ -649,7 +649,7 @@ padding: 0 0 0 10px;
     margin-bottom:20px;
 
 }
-#ProductAddForm legend,.categories h2 ,#CategoryAddForm legend ,.colors  h2 ,#ColorEditForm legend{
+#ArtAddForm legend,.categories h2 ,#CategoryAddForm legend ,.colors  h2 ,#ColorEditForm legend{
      background: none repeat scroll 0 0 #A3A289;
     border-left: 3px solid #E3007E;
     color: #FFFFFF;
@@ -682,7 +682,7 @@ input{
     margin:5px;
 
 }
-#ProductAddForm label{
+#ArtAddForm label{
      color:#828282;
     font-size: 13px;
       font: 13px/18px 'HelveticaNeueRegular',Helvetica,Arial,sans-serif;
@@ -691,7 +691,7 @@ input{
       padding-right:7px;
 
 }
-#ProductPrice{
+#ArtPrice{
     margin-left:76px;
 }
 input[type="submit"]{

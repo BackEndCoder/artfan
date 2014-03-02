@@ -68,15 +68,6 @@ class Product extends AppModel {
 													
 				 			  );					
 				
-    function getGiftCards() {
-        return $this->find('all',
-            array('conditions' => array('Product.category_id' => $this->giftCategoryId,
-                'Product.color_id' => $this->giftColorId,
-                'Product.style_id' => $this->giftStyleId),
-                'limit' => 8,
-                'order' => array('Product.id DESC')));
-    }
-
     function getProducts() {
         return $this->find('all',
             array('conditions' => array('Product.category_id NOT' => $this->giftCategoryId,

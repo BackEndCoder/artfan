@@ -1,5 +1,5 @@
 <?php
-class Product extends AppModel {
+class Giftcard extends AppModel {
 
     public $belongsTo = array('User');
 					

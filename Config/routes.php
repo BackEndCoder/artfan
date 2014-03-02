@@ -25,7 +25,6 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
         Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-        Router::connect('/giftcards', array('controller' => 'products', 'action' => 'giftcards'));
         Router::connect('/pages/getPerfectGift', array('controller' => 'pages', 'action' => 'getPerfectGift'));
         Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 /**

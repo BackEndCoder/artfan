@@ -219,7 +219,7 @@ class UsersController extends AppController {
 									<tr>
 										<td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
 											&reg; Artfan 2013<br/>
-											t: 01234 567891
+											t: 07879-106936
 										</td>
 										<td align="right" width="25%">
 											<table border="0" cellpadding="0" cellspacing="0">
@@ -367,7 +367,7 @@ class UsersController extends AppController {
 									<tr>
 										<td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
 											&reg; Artfan 2013<br/>
-											t: 01234 567891
+											t: 07879-106936
 										</td>
 										<td align="right" width="25%">
 											<table border="0" cellpadding="0" cellspacing="0">

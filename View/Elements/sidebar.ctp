@@ -88,8 +88,8 @@ $this->start('sidebar.block');
             <h2>The Perfect Gift</h2>
         </div>
         <div class="aside-contain">
-            <p><?php echo nl2br($perfectgiftPage['Content']['content']); ?></p>
-            <span class="btn"><?php echo $this->Html->link('more', array('plugin' => 'content_manager', 'controller' => 'contents', 'action' => 'view', 'contentSlug' => 'the-perfect-page')); ?> </span>
+            <?php //<p><?\php echo nl2br($perfectgiftPage['Content']['content']); ?\></p> ?>
+            <span class="btn"><?php echo $this->Html->link('more', array('plugin'=> null, 'controller' => 'giftcards', 'action' => 'index')); ?> </span>
             <div class="clr"></div>
         </div>
     </div>

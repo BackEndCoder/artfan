@@ -165,25 +165,28 @@ class CartController extends AppController {
 		$this->set('log_email', $log_email);
 		$this->set('log_address', $log_address);			
 	
-		$res_model = $this->Checkout->aaa();		
+		//$res_model = $this->Checkout->aaa();		
 		$this->set('id', $id);		
         $this->set('res_model', $res_model);		
 				
-		$productsCtrl = new ProductsController();
-        $productsCtrl->constructClasses();		
-		
         $productArray = $this->Session->read('cart');
         $products = array();
         if (count($productArray) > 0) {
             foreach ($productArray as $cartItemKey => $cartItemValue) {
-                $product = $productsCtrl->Product->find('first', array('conditions' => array('Product.id' => $cartItemKey)));
+                $product = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
                 if ($product != null) {
-                    $product['Product']['Quantity'] = $cartItemValue;
+                    $product['Art']['Quantity'] = $cartItemValue;
                     $products[] = $product;
                 }
             }
         }
         $this->set('products', $products);	
-		$this->set('cartproducts', $products);		
+		$this->set('cartproducts', $products);
+
+		if($this->request->is('post')):
+			$this->render('payform');
+		else:
+			$this->render('checkout');
+		endif;
     }
 }

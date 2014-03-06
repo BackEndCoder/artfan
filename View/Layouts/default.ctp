@@ -52,7 +52,7 @@
                     <ul class="header-cart">
                         <?php echo $this->element('welcome'); ?>
                         <?php echo $this->element('admin_link'); ?>
-                        <li><a href="<?php echo $this->base;?>/art/cart">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
+                        <li><a href="<?php echo Router::url(array('controller'=>'cart','action'=>'index')); ?>">View Cart&nbsp;<img style="padding-bottom: 2px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" />&nbsp;(&pound; <?php echo $this->element('header'); ?>)</a></li>
                         <!--<li><a href="<?php echo $this->base;?>/art/cart"><img style="padding-bottom: 4px;" src="<?php echo $this->base; ?>/img/shopping-cart.png" width="20" height="16" alt="shopping cart" /></a></li>
 						<li><a href="<?php echo $this->base;?>/art/cart">(&pound; <?php  echo $this->element('header'); ?>)</a></li>-->
                     </ul>

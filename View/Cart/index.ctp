@@ -13,8 +13,8 @@ $total = 0;
 </div>
 <div class="cart_link">
     <ul>
-        <li><a href="<?php echo $this->base; ?>/Art/all">Continue Shopping</a></li>
-        <li><a href="<?php echo $this->base; ?>/Checkout" class="pink_link">Next</a></li>
+        <li><a href="<?php echo Router::url(array('controller'=>'art','action'=>'index')); ?>">Continue Shopping</a></li>
+        <li><a href="<?php echo Router::url(array('controller'=>'cart','action'=>'checkout')); ?>" class="pink_link">Next</a></li>
     </ul>
 </div>
 <table class="align">
@@ -70,7 +70,7 @@ $total = 0;
             
         </ul>
     </td>
-    <td colspan="3"><a href="<?php echo $this->base; ?>/Checkout" class="pink_link">Next</a></td>
+    <td colspan="3"><a href="<?php echo Router::url(array('controller'=>'cart','action'=>'checkout')); ?>" class="pink_link">Next</a></td>
 </tr>
 </tbody>
 </table>

@@ -70,7 +70,7 @@ $total = 0;
             
         </ul>
     </td>
-    <td colspan="3"><a href="<?php echo Router::url(array('controller'=>'cart','action'=>'index')); ?>" class="pink_link">Next</a></td>
+    <td colspan="3"><a href="<?php echo Router::url(array('controller'=>'cart','action'=>'checkout')); ?>" class="pink_link">Next</a></td>
 </tr>
 </tbody>
 </table>

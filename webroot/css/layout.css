@@ -634,7 +634,6 @@ padding-top:8px;
     position: relative;
     left: 15px;
     /*text-align: center;*/
-    
 
 }
 #UserRegisterForm label{
@@ -664,11 +663,51 @@ padding-top:8px;
     color: #FFFFFF;
     font-size: 20px;
     line-height: 30px;
-    
-padding: 0 0 0 10px;
+    padding: 0 0 0 10px;
     width:37%;
     margin-bottom:20px;
 
+}
+
+#UserRegisterArtistForm{
+
+    margin-top: 5px;
+    padding: 5px;
+    position: relative;
+    left: 15px;
+    /*text-align: center;*/
+
+}
+#UserRegisterArtistForm label{
+    color:#828282;
+    font-size: 13px;
+    font: 13px/18px 'HelveticaNeueRegular',Helvetica,Arial,sans-serif;
+    width:120px;
+    display:inline-block;
+
+}
+#UserRegisterArtistForm input{
+    border:0px;
+    border:1px solid #ccc;
+    padding:4px;
+    margin:5px;
+
+}
+#UserRegisterArtistForm input[type="submit"]{
+    background: none repeat scroll 0 0 #E3007E;
+    color:#fff;
+    font: 18px/26px 'HelveticaNeueRegular',Helvetica,Arial,sans-serif;
+
+}
+#UserRegisterArtistForm legend{
+    background: none repeat scroll 0 0 #A3A289;
+    border-left: 3px solid #E3007E;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    width:37%;
+    margin-bottom:20px;
 }
 
 

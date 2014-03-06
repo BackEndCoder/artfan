@@ -136,7 +136,7 @@
                 </section>
                 <section class="footer-box">
                     <ul>
-                        <li><a href="<?php echo $this->Html->url('/users/register/')?>"><h2>SIGN-UP now</h2> and start selling your work!</a></li>
+                        <li><a href="<?php echo $this->Html->url('/users/register_artist/')?>"><h2>SIGN-UP now</h2> and start selling your work!</a></li>
                     </ul>
                 </section>
                 <section class="footer-box">

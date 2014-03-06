@@ -2,9 +2,9 @@
     $this->Html->addCrumb('Register' , $this->here);
 ?>
 <h3>Artist Registration</h3>
-<div id="register-artist-container">
-    <div id="register-artist-form">
-        <div id="register-artist-holder">
+<div id="register-container">
+    <div id="register-form">
+        <div id="register-holder">
         <?php echo $this->Form->create('User'); ?>
         <fieldset>
                 <?php

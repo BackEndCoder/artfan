@@ -57,9 +57,16 @@
         <div class="register">
             <h1>REGISTER</h1><br/>
 
-            <center><span class="form_title1">I don't have a Artfan account</span><br/>
-            <span class="form_title1">Please enter login information to create an account and continue</span></center><br/>
-            <a href="#" class="show_hide">Register</a>
+            <center><span class="form_title1">Don't have an Artfan account?</span><br/>
+            <span class="form_title1">Please click below to register</span></center><br/>
+            <div class="submit">
+                <a href="<?php echo $this->Html->url('/users/register'); ?>">
+                <div align="center">
+                <input type="button" class="btn" value="Register" style="background: none repeat scroll 0 0 #E3007E;cursor: pointer;color: #fff;font: 18px/26px 'HelveticaNeueRegular',Helvetica,Arial,sans-serif;padding: 3px 6px;"/></a>
+                </div>
+            </div>
+            <?php
+            /* Just in case it's wanted...
             <div class="slidingDiv">
                 <?php echo $this->Form->create('User', array('action' => '/register', 'id' => 'UserRegisterForm1', 'class' => 'form-horizontal form_login')); ?>                
 
@@ -86,8 +93,9 @@
                 </div>
 
                 <?php echo $this->Form->end(); ?>
-            </div>
 
+            </div>
+            */?>
         </div>
 
     </div>

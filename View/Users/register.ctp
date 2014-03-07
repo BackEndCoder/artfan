@@ -7,6 +7,7 @@
         <div id="register-holder">
         <?php echo $this->Form->create('User'); ?>
         <fieldset>
+            <a href="<?php echo $this->Html->url('/users/register_artist/')?>" style="color: #828282;font: 12px/26px 'HelveticaNeueRegular',Helvetica,Arial,sans-serif;"><b>Looking for artist sign-ups? Click here!</b><a/>
                 <?php
                 echo $this->Form->input('username');
                 echo $this->Form->input('email');

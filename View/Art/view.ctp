@@ -23,7 +23,7 @@
             }
         }
         ?>
-        <img src="<?php echo $images; ?>" alt="iphone"  class="" />
+        <img src="<?php echo $images; ?>" alt="iphone"  class="" style="width: auto; height: auto;" />
     </div>
     <div id="details_inner" class="inner_details">
         <div class="inner_des">
@@ -43,7 +43,7 @@
     </div>
     <div class="social">
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:60px;top:50px;">
+        <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:75px;top:50px;">
             <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
             <a class="addthis_button_tweet" tw:count="vertical"></a>
             <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>

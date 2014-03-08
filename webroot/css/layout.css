@@ -1103,8 +1103,6 @@ p.art_des{
     display: block;
     max-width:230px;
     max-height:600px;
-    width: auto;
-    height: auto;
 }
 .main-col3 img{
     height:177px;

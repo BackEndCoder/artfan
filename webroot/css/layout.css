@@ -932,6 +932,13 @@ td a{
      margin-top: 10px;
 
 }
+#post-cart {
+    background: #E3007E;
+    padding: 5px 5px;
+    font-family: 'HelveticaNeueCondensedBlack';
+    font-size: 13.51pt;
+    color: #fff;
+}
 .wishlist{
 
     text-decoration: none;

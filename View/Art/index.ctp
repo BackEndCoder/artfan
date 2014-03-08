@@ -9,8 +9,8 @@
 		padding: 10px;
 		padding-bottom: 20px;
 		position: absolute;
-		top: -80px;
-		left: 50px;
+		top: -150px;
+		left: 180px;
 		width: 280px;
 		z-index: 100;
 	}

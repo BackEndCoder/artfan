@@ -43,7 +43,7 @@
     </div>
     <div class="social">
         <!-- AddThis Button BEGIN -->
-        <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:50px;top:50px;">
+        <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:60px;top:50px;">
             <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
             <a class="addthis_button_tweet" tw:count="vertical"></a>
             <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
@@ -89,5 +89,5 @@
         <li><a href="">More</a></li>
         <li><a href=""><img width="18" height="16" src="<?php echo $this->base; ?>/img/next.png" alt="next"></a></li>
     </ul>
-    
+
 </div>

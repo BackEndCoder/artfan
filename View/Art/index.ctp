@@ -2,7 +2,7 @@
     $this->Html->addCrumb('All Art', $this->here);
 ?>
 
-<style type='text/css' media='screen'>
+<style type='text/css' media='screen' xmlns="http://www.w3.org/1999/html">
 	.collapse {
 		display: none;
 		background-color: #FFF;
@@ -106,7 +106,7 @@
 							<?php
 							echo $this->Form->create('Cart',array('url'=>'/cart/add'));
 							echo $this->Form->hidden('Art.id',array('value'=>$art['Art']['id']));
-							echo $this->Form->submit('Add To Cart',array('style'=>'color: #FFF;','class'=>'cart','div'=>false));
+							echo $this->Form->submit('Add To Cart',array('style'=>'color: #FFF;','id'=>'post-cart','div'=>false));
 							echo $this->Form->end();
 							?>
 							<a href="<?php echo $this->Html->url('/art/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a>

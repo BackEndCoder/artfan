@@ -11,16 +11,18 @@
 
 .nivoSlider {
 	position:relative;
-	width:100%;
-	height:290px;
+	width:740px;
+    height:309px;
 	overflow: hidden;
 }
+
 .nivoSlider img {
 	position:absolute;
 	top:0px;
 	left:0px;
 	max-width: none;
 }
+
 .nivo-main-image {
 	display: block !important;
 	position: relative !important; 
@@ -40,6 +42,7 @@
 	z-index:6;
 	display:none;
 }
+
 /* The slices and boxes in the Slider */
 .nivo-slice {
 	display:block;
@@ -48,13 +51,17 @@
 	height:100%;
 	top:0;
 }
+
 .nivo-box {
 	display:block;
 	position:absolute;
 	z-index:5;
 	overflow:hidden;
 }
-.nivo-box img { display:block; }
+
+.nivo-box img {
+    display:block;
+}
 
 /* Caption styles */
 .nivo-caption {
@@ -75,16 +82,20 @@
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
+
 .nivo-caption p {
-	padding:5px;
+	padding:0px;
 	margin:0;
 }
+
 .nivo-caption a {
 	display:inline !important;
 }
+
 .nivo-html-caption {
     display:none;
 }
+
 /* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav a {
 	position:absolute;
@@ -92,30 +103,25 @@
 	z-index:9;
 	cursor:pointer;
 	text-indent:-9999px;
-	
 }
-
-
-
 
 .nivo-prevNav {
 	left:0px;
-
 }
+
 .nivo-nextNav {
 	right:0px;
 }
+
 /* Control nav styles (e.g. 1,2,3...) */
 .nivo-controlNav {
 	text-align:center;
 	padding: 3px 0;
-	
-	
 }
+
 .nivo-controlNav a {
 	cursor:pointer;
-	
-		display:inline-block;
+	display:inline-block;
 	width:22px;
 	height:22px;
 	background:url(../img/bullets.png) no-repeat;

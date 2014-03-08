@@ -20,6 +20,7 @@
         <script type="text/javascript" src="<?php echo $this->base; ?>/js/jquery.1.9.1.min.js"></script>
         <script type='text/javascript' src='<?php echo $this->base; ?>/js/jquery.dcjqaccordion.2.7.min.js'></script>
         <script type="text/javascript" src="<?php echo $this->base; ?>/js/jquery.nivo.slider.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function($) {
                 $('#accordion').dcAccordion({

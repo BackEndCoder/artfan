@@ -68,7 +68,7 @@
                     }
                 }
                 ?>
-                <a href="<?php echo $slider['Slider']['url']; ?>"><img src="<?php echo $image_url; ?>" width="754" height="314" alt="banner" /> </a>
+                <a href="<?php echo $slider['Slider']['url']; ?>"><img src="<?php echo $image_url; ?>" width="754" height="309" alt="banner" /> </a>
             <?php endforeach; ?>
         </div>
     </div>
@@ -259,7 +259,7 @@
 					<div class="myhoverlink">
 						<?php echo $this->Html->link($art['Art']['title'], array('action' => 'view', 'controller' => 'art', $id)); ?>
 						<div class='collapse'>
-							<div class="pop_close"><img src="/img/close.png';?>" style="width:20px; height: 20px;"></div>							
+							<div class="pop_close"><img src="/img/close.png" style="width:20px; height: 20px;"></div>
 							<img src="<?php echo $images; ?>" style="width:280px; height: auto;"/>
 
 							<div class="sep">

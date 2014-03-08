@@ -6,7 +6,7 @@
 ?>
 
 <div  id="inner_art"class="art_details">
-    <div class="images_details">
+    <div class="images_details" align="center">
         <?php
         $id = $art['Art']['id'];
         $folder_url = WWW_ROOT . "/files/ArtImages/" . $id . "/";
@@ -83,7 +83,6 @@
         </div>
     <?php endforeach;
     ?>
-
 </div>
 <div class="more">
     <ul>

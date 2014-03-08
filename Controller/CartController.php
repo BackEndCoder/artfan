@@ -46,25 +46,11 @@ class CartController extends AppController {
 		$this->layout = "default";
 	}
 
-	public function addToCart($id = null) {
-		if ($this->Session->read('cart') == null) {
-			$artDict = array();
-		} else {
-			$artDict = $this->Session->read('cart');
-		}
-
-		if ($this->Dictionary->containsKey($artDict, $id)) {
-			$prevQty = $this->Dictionary->getItem($artDict, $id);
-			$this->Dictionary->removeItem($artDict, $id);
-			$this->Dictionary->addItem($artDict, $id, $prevQty + 1);
-		} else {
-			echo 'new';
-			$this->Dictionary->addItem($artDict, $id, 1);
-		}
-
-		$this->Session->write('cart', $artDict);
-		$this->redirect(array("controller" => "art",
-			"action" => "cart"));
+	public function add() {
+		$cart[] = $this->request->data;
+		$this->Session->write('Cart', $cart);
+		$this->redirect(array('controller' => 'cart',
+			'action' => 'index'));
 	}
 
 	public function updateCart() {
@@ -101,18 +87,23 @@ class CartController extends AppController {
 	}
 
 	public function index() {
-		$artArray = $this->Session->read('cart');
+		if($this->Session->check('Cart')){
+		$cart = $this->Session->read('Cart');
+		debug($cart);
+		die;
 		$art = array();
-		if (count($artArray) > 0) {
-			foreach ($artArray as $cartItemKey => $cartItemValue) {
-				if ($cartItemValue > 0) {
-					$art = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
-					if ($art != null) {
-						$art['Art']['Quantity'] = $cartItemValue;
-						$art[] = $art;
+			if (count($artArray) > 0) {
+				foreach ($artArray as $cartItemKey => $cartItemValue) {
+					if ($cartItemValue > 0) {
+						$art = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
+						if ($art != null) {
+							$art['Art']['Quantity'] = $cartItemValue;
+							$art[] = $art;
+						}
 					}
 				}
 			}
+
 		}
 		$this->set('art', $art);
 		$this->set('cartart', $art);

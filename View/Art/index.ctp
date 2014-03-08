@@ -103,7 +103,14 @@
 							
 							<p>
 							<br/>
-							<a href="<?php echo $this->Html->url('/art/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a> 
+							<?php
+							echo $this->Form->create('Cart',array('url'=>'/cart/add'));
+							echo $this->Form->hidden('Art.id',array('value'=>$art['Art']['id']));
+							echo $this->Form->submit('Add To Cart',array('style'=>'color: #FFF;','class'=>'cart','div'=>false));
+							echo $this->Form->end();
+							?>
+							<a href="<?php echo $this->Html->url('/art/addToCart/') . $id; ?>" class="cart" style="color: #FFF;">Add To Cart</a>
+
         					<a href="<?php echo $this->Html->url('/Wishlists/add/') . $id; ?>" class="wishlist" style="color: #FFF;">Wishlist</a>							
 							</p>
 						</div>    

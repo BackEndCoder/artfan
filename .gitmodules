@@ -7,3 +7,12 @@
 [submodule "Plugin/ContentManager"]
 	path = Plugin/ContentManager
 	url = https://github.com/BackEndCoder/ContentManager.git
+[submodule "Plugin/Cart"]
+	path = Plugin/Cart
+	url = https://github.com/burzum/cakephp-cart-plugin.git
+[submodule "Plugin/PaypalIpn"]
+	path = Plugin/PaypalIpn
+	url = https://github.com/webtechnick/CakePHP-Paypal-IPN-Plugin.git
+[submodule "Plugin/Migrations"]
+	path = Plugin/Migrations
+	url = https://github.com/CakeDC/migrations.git

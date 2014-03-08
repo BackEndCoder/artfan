@@ -109,3 +109,5 @@ CakeLog::config('error', array(
 ));
 
 CakePlugin::load('ContentManager', array('bootstrap' => false, 'routes' => true));
+CakePlugin::load('Cart', array('bootstrap' => true, 'routes' => false));
+CakePlugin::load('Migrations', array('bootstrap' => false, 'routes' => false));

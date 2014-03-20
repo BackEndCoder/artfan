@@ -1,15 +1,4 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of AdminController
- *
- * @author Wilson<mailwilson007@gmail.com>
- */
 App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
@@ -51,5 +40,3 @@ class AdminController extends AppController {
     }
 
 }
-
-?>

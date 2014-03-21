@@ -35,20 +35,22 @@ $total = 0;
     </thead>
 
     <tbody>
-<?php foreach ($art as $art): ?>
+<?php foreach ($data as $data): ?>
+<?php foreach ($data as $data): ?>
         <tr>
-            <td class="title_art"><?php echo $art['Art']['title']; ?></td>
-            <td style="text-align:left;"><?php echo $art['Art']['description']; ?></td>
-            <td ><span class="price_box"><?php echo $art['Art']['price']; ?></span></td>
+            <td class="title_art"><?php echo $data['Art']['title']; ?></td>
+            <td style="text-align:left;"><?php echo $data['Art']['description']; ?></td>
+            <td ><span class="price_box"><?php echo $data['Art']['price']; ?></span></td>
             <td>
 				<span class="price_box">
-					<input type="text" name="prod_qty[]" value="<?php echo $art['Art']['Quantity']; ?>" style="width:50px;" />
-					<input type="hidden" name="prod_id[]" value="<?php echo $art['Art']['id']; ?>"  />
+					<input type="text" name="prod_qty[]" value="<?php echo $data['quantity']; ?>" style="width:50px;" />
+					<input type="hidden" name="prod_id[]" value="<?php echo $data['Art']['id']; ?>"  />
 				</span>
 			</td>            
-            <td><span class="price_box"><?php echo $art['Art']['price']*$art['Art']['Quantity']; ?></td>
-            <?php $total+= $art['Art']['price']*$art['Art']['Quantity']; ?>
+            <td><span class="price_box"><?php echo $data['Art']['price']*$data['quantity']; ?></td>
+            <?php $total+= $data['Art']['price']*$data['quantity']; ?>
         </tr>
+<?php endforeach; ?>
 <?php endforeach; ?>
 		<tr>
 			<td colspan="5" style="text-align: right;"><input type="submit" name="update_cart" value="Update Cart" id="cart_submit"></td>

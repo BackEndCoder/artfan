@@ -78,7 +78,6 @@
             ?>
             <img src="<?php echo $images; ?>" alt="iphone"  class="" />
             <div class="inner_details">
-
                 <p class="art_name">
 				
 				

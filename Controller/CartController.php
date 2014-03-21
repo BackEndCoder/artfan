@@ -47,10 +47,32 @@ class CartController extends AppController {
 	}
 
 	public function add() {
-		$cart[] = $this->request->data;
+		$array_keys = array_keys($this->request->data);
+		$array_key = $array_keys[0];
+
+		$added = false;
+
+		if($this->Session->check('Cart')){
+			$cart = $this->Session->read('Cart');
+			foreach($cart[$array_key] as $k => $c){
+				if($c['id']==$this->request->data[$array_key]['id']){
+					$cart[$array_key][$k]['quantity'] = $cart[$array_key][$k]['quantity']+1;
+					$added = true;
+				}
+			}
+			if(!$added){
+				$count = count($cart[$array_key]);
+				$cart[$array_key][$count] = $this->request->data[$array_key];
+				$cart[$array_key][$count]['quantity'] = 1;
+			}
+		}
+		else{
+			$cart[$array_key][0] = $this->request->data[$array_key];
+			$cart[$array_key][0]['quantity'] = 1;
+		}
+
 		$this->Session->write('Cart', $cart);
-		$this->redirect(array('controller' => 'cart',
-			'action' => 'index'));
+		$this->redirect(array('controller' => 'cart','action' => 'index'));
 	}
 
 	public function updateCart() {
@@ -88,25 +110,26 @@ class CartController extends AppController {
 
 	public function index() {
 		if($this->Session->check('Cart')){
-		$cart = $this->Session->read('Cart');
-		debug($cart);
-		die;
-		$art = array();
-			if (count($artArray) > 0) {
-				foreach ($artArray as $cartItemKey => $cartItemValue) {
-					if ($cartItemValue > 0) {
-						$art = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
-						if ($art != null) {
-							$art['Art']['Quantity'] = $cartItemValue;
-							$art[] = $art;
-						}
+			$cart = $this->Session->read('Cart');
+			$array_keys = array_keys($cart);
+			foreach ($array_keys as $key => $item) {
+				foreach($cart[$item] as $i){
+					$id_array[$i['id']] = $i['id'];
+				}
+				$this->loadModel($item);
+				$data[$item] = $this->$item->find('all', array('conditions' => array($item.'.id' => $id_array)));
+			}
+		}
+		if(!empty($data)){
+			foreach ($array_keys as $key => $item) {
+				foreach($cart[$item] as $k => $i){
+					if(!empty($cart[$item][$k]['quantity'])){
+						$data[$item][$k]['quantity'] = $cart[$item][$k]['quantity'];
 					}
 				}
 			}
-
+			$this->set('data', $data);
 		}
-		$this->set('art', $art);
-		$this->set('cartart', $art);
 	}
 
 	function getCarts() {

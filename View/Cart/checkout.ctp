@@ -40,8 +40,8 @@
 
 
 <?php
-$this->Html->addCrumb('Cart', '/ProductDetails/cart');
-$this->Html->addCrumb('Checkout', '/Checkout');
+$this->Html->addCrumb('Cart', array('controller'=>'cart','action'=>'index'));
+$this->Html->addCrumb('Checkout', array('controller'=>'cart','action'=>'checkout'));
 ?>
 <style>
 .pink_link_top {
@@ -55,17 +55,17 @@ $this->Html->addCrumb('Checkout', '/Checkout');
 }
 </style>
 
-<link rel="stylesheet" href="<?php echo $this->base;?>/app/webroot/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/bootstrap.css" />
 
 <form method="post" action="" id="ship_bill">
 
 <div class="left_cart">
     <h2 class="cart_icon">Shopping Bag</h2>
-    <img src="<?php echo $this->base; ?>/img/2.png" width="" height="" alt="shopping cart" />
+    <img src="/img/2.png" width="" height="" alt="shopping cart" />
 </div>
 <div class="cart_link">
     <ul>
-        <li><a href="<?php echo $this->base; ?>/Products/all">Continue Shopping</a></li>
+        <li><a href="<?php echo Router::url(array('controller'=>'art','action'=>'index')); ?>">Continue Shopping</a></li>
         <li><input type="submit" name="submit" value="Next" class="pink_link_top"></li>
     </ul>
 </div>
@@ -240,7 +240,7 @@ $this->Html->addCrumb('Checkout', '/Checkout');
 </form>
 
 
-<script src="<?php echo $this->base;?>/app/webroot/js/jquery-validate.js"></script>
+<script src="/js/jquery-validate.js"></script>
 
 <script>
 	$( document ).ready(function() {

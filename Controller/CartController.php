@@ -167,19 +167,27 @@ class CartController extends AppController {
 		$this->set('id', $id);		
         $this->set('res_model', $res_model);		
 				
-        $productArray = $this->Session->read('cart');
-        $products = array();
-        if (count($productArray) > 0) {
-            foreach ($productArray as $cartItemKey => $cartItemValue) {
-                $product = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
-                if ($product != null) {
-                    $product['Art']['Quantity'] = $cartItemValue;
-                    $products[] = $product;
-                }
-            }
-        }
-        $this->set('products', $products);	
-		$this->set('cartproducts', $products);
+		if($this->Session->check('Cart')){
+			$cart = $this->Session->read('Cart');
+			$array_keys = array_keys($cart);
+			foreach ($array_keys as $key => $item) {
+				foreach($cart[$item] as $i){
+					$id_array[$i['id']] = $i['id'];
+				}
+				$this->loadModel($item);
+				$data[$item] = $this->$item->find('all', array('conditions' => array($item.'.id' => $id_array)));
+			}
+		}
+		if(!empty($data)){
+			foreach ($array_keys as $key => $item) {
+				foreach($cart[$item] as $k => $i){
+					if(!empty($cart[$item][$k]['quantity'])){
+						$data[$item][$k]['quantity'] = $cart[$item][$k]['quantity'];
+					}
+				}
+			}
+			$this->set('data', $data);
+		}
 
 		if($this->request->is('post')):
 			$this->render('payform');

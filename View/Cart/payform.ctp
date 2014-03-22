@@ -128,10 +128,11 @@ $this->Html->addCrumb('Checkout', array('controller'=>'cart','action'=>'checkout
         <td>Qty</td>        
     </tr>
 <?php 
-foreach ($products as $product) : 
-	$prod_name 		= $product['Product']['title'];
-	$prod_charge 	= $product['Product']['price'];
-	$prod_qty		= $product['Product']['Quantity'];
+foreach ($data as $key => $data) : 
+foreach ($data as $data) : 
+	$prod_name 		= $data[$key]['title'];
+	$prod_charge 	= $data[$key]['price'];
+	$prod_qty		= $data['quantity'];
 	$total			+= $prod_charge*$prod_qty; 
 	?>	
     <tr>	
@@ -140,6 +141,7 @@ foreach ($products as $product) :
         <td><?php echo $prod_qty; ?></td>  		    
     </tr>
 	<?php
+endforeach; 
 endforeach; 
 ?>  
 	<tr>

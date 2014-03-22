@@ -5,7 +5,7 @@ $this->Html->addCrumb('Cart', $this->here);
 $total = 0;
 ?>
 
-<form method="post" action="<?php echo $this->base;?>/art/updateCart">
+<form method="post" action="/cart/updateCart">
 
 <div class="left_cart">
     <h2 class="cart_icon">Shopping Bag</h2>
@@ -35,20 +35,20 @@ $total = 0;
     </thead>
 
     <tbody>
-<?php foreach ($data as $data): ?>
+<?php foreach ($data as $array_key => $data): ?>
 <?php foreach ($data as $data): ?>
         <tr>
-            <td class="title_art"><?php echo $data['Art']['title']; ?></td>
-            <td style="text-align:left;"><?php echo $data['Art']['description']; ?></td>
-            <td ><span class="price_box"><?php echo $data['Art']['price']; ?></span></td>
+            <td class="title_art"><?php echo $data[$array_key]['title']; ?></td>
+            <td style="text-align:left;"><?php echo $data[$array_key]['description']; ?></td>
+            <td ><span class="price_box"><?php echo $data[$array_key]['price']; ?></span></td>
             <td>
 				<span class="price_box">
-					<input type="text" name="prod_qty[]" value="<?php echo $data['quantity']; ?>" style="width:50px;" />
-					<input type="hidden" name="prod_id[]" value="<?php echo $data['Art']['id']; ?>"  />
+					<input type="text" name="prodQty[<?php echo $array_key; ?>][]" value="<?php echo $data['quantity']; ?>" style="width:50px;" />
+					<input type="hidden" name="prodId[<?php echo $array_key; ?>][]" value="<?php echo $data[$array_key]['id']; ?>"  />
 				</span>
 			</td>            
-            <td><span class="price_box"><?php echo $data['Art']['price']*$data['quantity']; ?></td>
-            <?php $total+= $data['Art']['price']*$data['quantity']; ?>
+            <td><span class="price_box"><?php echo $data[$array_key]['price']*$data['quantity']; ?></td>
+            <?php $total+= $data[$array_key]['price']*$data['quantity']; ?>
         </tr>
 <?php endforeach; ?>
 <?php endforeach; ?>

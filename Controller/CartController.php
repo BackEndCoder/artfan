@@ -76,36 +76,20 @@ class CartController extends AppController {
 	}
 
 	public function updateCart() {
-		if ($this->Session->read('cart') == null) {
-			$artDict = array();
+		if ($this->Session->check('Cart')) {
+			$cart = $this->Session->read('Cart');
 		} else {
-			$artDict = $this->Session->read('cart');
+			$cart = array();
 		}
-		foreach ($_POST['prodId'] as $key => $prodId) {
-			if ($this->Dictionary->containsKey($artDict, $prodId)) {
-				$this->Dictionary->removeItem($artDict, $prodId);
-				$this->Dictionary->addItem($artDict, $prodId, $_POST['prod_qty'][$key]);
-			}
-		}
-		$this->Session->write('cart', $artDict);
-
-		$artArray = $this->Session->read('cart');
-
-		$art = array();
-		if (count($artArray) > 0) {
-			foreach ($artArray as $cartItemKey => $cartItemValue) {
-				if ($cartItemValue > 0) {
-					$art = $this->Art->find('first', array('conditions' => array('Art.id' => $cartItemKey)));
-					if ($art != null) {
-						$art['Art']['Quantity'] = $cartItemValue;
-						$art[] = $art;
-					}
+		foreach ($_POST['prodId'] as $array_key => $prodId) {
+			foreach ($prodId as $key => $item) {
+				if($_POST['prodQty'][$array_key][$key]!=$cart[$array_key][$key]['quantity']){
+					$cart[$array_key][$key]['quantity'] = $_POST['prodQty'][$array_key][$key];
 				}
 			}
 		}
-
-		$this->set('art', $art);
-		$this->set('cartart', $art);
+		$this->Session->write('Cart', $cart);
+		$this->redirect(array('controller' => 'cart','action' => 'index'));
 	}
 
 	public function index() {
